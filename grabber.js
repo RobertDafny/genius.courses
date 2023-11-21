@@ -13,7 +13,6 @@ materialObj = {
         materialObj.fileSrc = null;
     }
 }
-
 lessonObj = {
     title: null,
     description: null,
@@ -61,7 +60,6 @@ lessonObj = {
         await courseObj.next();
     }
 }
-
 courseObj = {
     title: null,
     description: null,
@@ -123,7 +121,6 @@ courseObj = {
         await courseObj.initLessons();
     }
 }
-
 treeObj = {
     courses: [],
     isInit: function(){
@@ -167,7 +164,6 @@ treeObj = {
         return JSON.stringify(treeObj);
     }
 }
-
 fileObj = {
     name: "edu.genius.space.json",
     write: function(data){
@@ -180,11 +176,10 @@ fileObj = {
         )
     }
 }
-
 pageObj = {
     coursesObj: null,
-    init: ()=>{
-        pageObj.coursesObj = pageObj.getCoursesJson();
+    init: async ()=>{
+        pageObj.coursesObj = await pageObj.getCoursesJson();
     },
     grabberRun: async function(){
         await treeObj.run();
