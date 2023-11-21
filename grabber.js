@@ -178,8 +178,8 @@ fileObj = {
 }
 pageObj = {
     coursesObj: null,
-    init: ()=>{
-        pageObj.coursesObj = pageObj.getCoursesJson().then(data => data);
+    init: async ()=>{
+        pageObj.coursesObj = await pageObj.getCoursesJson();
     },
     grabberRun: async function(){
         await treeObj.run();
