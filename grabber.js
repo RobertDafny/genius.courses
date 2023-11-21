@@ -190,7 +190,7 @@ pageObj = {
         await treeObj.run();
     },
     getCoursesJson: async function(){
-        let filePath = 'https://raw.githubusercontent.com/RobertDafny/genius.course/main/courses-2023-all.json';
+        let filePath = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/courses-2023-all.json';
         return await fetch(filePath).then(response => response.json());
     }
 }
