@@ -2664,7 +2664,89 @@
       "title": "Дизайн",
       "slug": "design",
       "courses": [
-
+        {
+          "title": "3D Моделювання",
+          "description": "Наш курс \"3D Моделювання\" - розроблений для початківців та тих, хто бажає поглибити свої навички в області створення захоплюючих 3D-моделей для ігор. ",
+          "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/dashboard",
+          "imgSrc": "https://file.genius.space/uploads/images/course/course_header/f9/6c/3d-mobile.png",
+          "lessons": [
+            {
+              "title": "Урок-знайомство",
+              "description": "Перший урок, що допоможе вам отримати уявлення про роботу з 3D моделюванням. Дізнаєтесь, які завдання та цілі мають в роботі спеціалісти з цієї галузі.\n\nА також познайомитесь з вашим спікером та його досвідом роботи.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/znaiomstvo/lesson/urok-znaiomstvo",
+              "videoSrc": "https://player.vimeo.com/video/877343910",
+              "materials": []
+            },
+            {
+              "title": "Знайомство з 3D Maya",
+              "description": "В другій відео лекції ви познайомитесь з програмою 3D Maya. \n\nВи розберете: інтерфейс, навігацію, гарячі клавіши, створення примітивів та їх редагування. А також пройдетесь по роботі з основними операціями з поліогонального моделювання. Спробуєте виділення об’єктів та компонентів.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/znaiomstvo-z-3d-maya/lesson/znaiomstvo-z-3d-maya",
+              "videoSrc": "https://player.vimeo.com/video/877344141",
+              "materials": []
+            },
+            {
+              "title": "Робота з 3D Maya",
+              "description": "Поговоримо трішки про пайплайн, підбір референсів для створення об'єкту.  Розберемося що таке базова геометрія і навіщо вона нам потрібна і перейдемо до її створення.\n\n ",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/robota-z-3d-maya/lesson/robota-z-3d-maya",
+              "videoSrc": "https://player.vimeo.com/video/879857830",
+              "materials": [
+                {
+                  "title": "Референси",
+                  "fileSrc": "https://drive.google.com/drive/folders/1pFve0NPGh4CMDc9kgIq5ipQFoU4vaPMR?usp=sharing"
+                }
+              ]
+            },
+            {
+              "title": "Створення Highpoly моделі (частина 1)",
+              "description": "Початок створення високополігональної моделі",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/stvorennya-highpoly-modeli-chastina",
+              "videoSrc": "https://player.vimeo.com/video/880024216",
+              "materials": []
+            },
+            {
+              "title": "Створення Highpoly моделі (частина 2)",
+              "description": "Продовження створення високополігональної моделі.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/stvorennya-highpoly-modeli-chastina-druga",
+              "videoSrc": "https://player.vimeo.com/video/880031902",
+              "materials": []
+            },
+            {
+              "title": "Створення Highpoly моделі (фінальна частина)",
+              "description": "Закінчуємо створювати Highpoly модель. Робимо клавіши.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/stvorennya-highpoly-modeli-finalna-chastina",
+              "videoSrc": "https://player.vimeo.com/video/880038340",
+              "materials": []
+            },
+            {
+              "title": "Низькополігональна модель (частина 1)",
+              "description": "Початок роботи зі створенням низькополігональної моделі. ",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-chastina-persha",
+              "videoSrc": null,
+              "materials": []
+            },
+            {
+              "title": "Низькополігональна модель (частина 2)",
+              "description": "Продовжуємо роботу над створенням низькополігональної моделі",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-chastina-druga",
+              "videoSrc": null,
+              "materials": []
+            },
+            {
+              "title": "Низькополігональна модель (фінальна частина)",
+              "description": "Фінальна пряма у створенні низькополігональної моделі. Вносимо останні правки та корективи.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-finalna-chastina",
+              "videoSrc": null,
+              "materials": []
+            },
+            {
+              "title": "Розгортка текстур (UV)",
+              "description": "Створення розгортки текстур ",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-rozgortki-tekstur/lesson/rozgortka-tekstur",
+              "videoSrc": null,
+              "materials": []
+            }
+          ]
+        },
         {
           "title": "Figma з нуля",
           "description": "Курс \"Figma з нуля\" - це ідеальний вибір для початківців, які бажають вивчити Figma, аби розпочати свій шлях у світі веб-дизайну та інтерфейсного дизайну.",
