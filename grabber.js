@@ -188,7 +188,7 @@ pageObj = {
             localStorage.coursesObj = JSON.stringify(json);
         }
         pageObj.coursesObj = JSON.parse(localStorage.coursesObj);
-        await pageObj.setNewHtml().then(console.log));
+        await pageObj.setNewHtml().then(console.log);
         // Initialize the tree with the example JSON data
         pageObj.buildTree($("#jsonTree"), pageObj.coursesObj);
     },
