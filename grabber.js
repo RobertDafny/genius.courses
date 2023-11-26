@@ -140,8 +140,8 @@ treeObj = {
     },
     init: async function(){
         let startPage = '/uk/courses';
-        if(window.location.pathname === pageObj.loginPage
-        || window.location.pathname === pageObj.startPage){
+        if(window.location.pathname.includes(pageObj.loginPage)
+        || window.location.pathname.includes(pageObj.startPage)){
             return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
         }
         if(window.location.pathname !== startPage && !treeObj.isInit()){
@@ -178,15 +178,15 @@ fileObj = {
 }
 pageObj = {
     coursesObj: null,
-    loginPage: '/uk/login',
-    startPage: '/uk/free',
+    loginPage: '/login',
+    startPage: '/free',
     searchStr: '',
     init: async ()=>{
-        if(window.location.pathname !== pageObj.startPage
-        && window.location.pathname !== pageObj.loginPage){
+        if(!window.location.pathname.includes(pageObj.startPage)
+        && !window.location.pathname.includes(pageObj.loginPage)){
             return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
         }
-        if(window.location.pathname === pageObj.loginPage){
+        if(window.location.pathname.includes(pageObj.loginPage)){
             window.location.href = window.location.origin + pageObj.startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
