@@ -186,7 +186,7 @@ pageObj = {
         && !window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
         }
-        if(window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
+        if(!window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             window.location.href = window.location.origin + pageObj.startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
