@@ -26,4 +26,4 @@
 
   Користувацький файл readmeUser.txt має також бути завантажений в гіт для ознайомлення з керівництвом по діям.
 Посилання на git: https://github.com/RobertDafny/genius.courses/tree/main
-Приклад посилання на вигрузку файла: 
+Приклад посилання на вигрузку файла: https://raw.githubusercontent.com/RobertDafny/genius.courses/main/readme.txt
