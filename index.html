@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Курси | Genius Space</title>
+    <link rel="icon" href="/favicon-512x512-1-32x32.png" sizes="32x32">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1user-scalable=0">
+    <link href="https://raw.githubusercontent.com/RobertDafny/genius.courses/main/style.css" rel="stylesheet">
+    <script charset="utf-8" src="https://raw.githubusercontent.com/RobertDafny/genius.courses/main/grabber.js"></script>
+</head>
+<body>
+  <div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Пошук...">
+    <button id="searchButton">Пошук</button>
+    <button id="clearButton">Очистити</button>
+  </div>
+  <div id="content">
+    <!-- Content blocks -->
+    <div class="course-info-block" id="courseInfo">
+      <!-- Course info goes here -->
+      <img src="" alt="Course Image" id="courseImage">
+      <h2 id="courseTitle">Course Title</h2>
+      <p id="courseDescription">Course Description</p>
+    </div>
+
+    <div class="lecture-info-block" id="lectureInfo">
+      <!-- Lecture info goes here -->
+      <div class="content-block" id="videoContent">
+        <p id="videoSrc">Video Content</p>
+      </div>
+      <div class="content-block" id="lectureName">
+        <h2 id="lectureTitle">Lecture Title</h2>
+      </div>
+      <div class="content-block" id="lectureDescription">
+        <p id="lectureDescriptionText">Lecture Description</p>
+      </div>
+      <div class="content-block additional-materials" id="lectureMaterials">
+        <h3>Додаткові матеріали</h3>
+        <ul class="material-list" id="materialsList">
+          <!-- Materials will be dynamically added here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="tree">
+    <ul class="tree" id="jsonTree">
+      <!-- JSON structure will be dynamically added here -->
+    </ul>
+  </div>
+</body>
+</html>
