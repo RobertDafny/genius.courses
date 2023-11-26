@@ -183,7 +183,7 @@ pageObj = {
     searchStr: '',
     init: async ()=>{
         if(window.location.pathname !== pageObj.startPage
-        || window.location.pathname !== pageObj.loginPage){
+        && window.location.pathname !== pageObj.loginPage){
             return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
         }
         if(window.location.pathname === pageObj.loginPage){
