@@ -144,7 +144,7 @@ treeObj = {
         || window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
         }
-        if(window.location.pathname !== startPage && !treeObj.isInit()){
+        if(window.location.pathname !== startPage.replace(/\/uk/, '') && !treeObj.isInit()){
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
@@ -179,7 +179,7 @@ fileObj = {
 pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
-    startPage: '/uk/free',
+    startPage: '/uk/login',//'/uk/free',
     searchStr: '',
     init: async ()=>{
         if(!window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
@@ -242,7 +242,7 @@ pageObj = {
         mark(elem);
     },
     getActiveClass: obj => {
-        return Boolean(localStorage.lastLessonId) && localStorage.lastLessonId.includes(obj.id)
+        return Boolean(localStorage.lastLessonId) && locainitlStorage.lastLessonId.includes(obj.id)
             ? "active"
             : "";
     },
