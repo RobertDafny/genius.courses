@@ -140,9 +140,12 @@ treeObj = {
     },
     init: async function(){
         let startPage = '/uk/courses';
+        if(window.location.pathname === '/uk/login'){
+            return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
+        }
         if(window.location.pathname !== startPage && !treeObj.isInit()){
             window.location.href = window.location.origin + startPage;
-            return Promise.reject(new Error('Goto start page'));
+            return Promise.reject(new Error('Go to the start page...'));
         }
         await treeObj.initCourses();
     },
@@ -151,11 +154,7 @@ treeObj = {
         await treeObj.initCourses();
     },
     run: async function(){
-        try{
-            await treeObj.init();
-        } catch(error) {
-            return Promise.reject(new Error('Помилка: treeObj.init()'));
-        }
+        await treeObj.init();
     },
     unload: function(){
         fileObj.write(treeObj.getJsonData());
@@ -178,14 +177,230 @@ fileObj = {
 }
 pageObj = {
     coursesObj: null,
+    startPage: '/uk/login',
+    searchStr: '',
     init: async ()=>{
-        pageObj.coursesObj = await pageObj.getCoursesJson();
+        if(window.location.pathname !== pageObj.startPage){
+            return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
+        }
+        if(typeof localStorage.coursesObj === 'undefined'){
+            let json = await pageObj.getCoursesJson();
+            localStorage.coursesObj = JSON.stringify(json);
+        }
+        pageObj.coursesObj = JSON.parse(localStorage.coursesObj);
+        await pageObj.setNewHtml().then(console.log));
+        // Initialize the tree with the example JSON data
+        pageObj.buildTree($("#jsonTree"), pageObj.coursesObj);
+    },
+    refreshTree: (json) => {
+        let obj = (!json) ? pageObj.coursesObj : JSON.parse(json);
+        $("#jsonTree").empty();
+        pageObj.buildTree($("#jsonTree"), obj);
+    },
+    setNewHtml: async function(){
+        let fileUrl = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/index.html';
+        try{
+            let htmlTxt = await fetch(fileUrl).then(response => response.text());
+            document.write(htmlTxt);
+        } catch(e){
+            return Promise.reject(new Error('Помилка при отриманні файлу index.html'));
+        }
     },
     grabberRun: async function(){
         await treeObj.run();
     },
     getCoursesJson: async function(){
         let filePath = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/courses-2023-all.json';
-        return await fetch(filePath).then(response => response.json());
+        return await fetch(filePath)
+            .then(response=>response.json())
+            .catch(() => Promise.reject(new Error('Помилка при отриманні файлу курсів')));
+    },
+    getIframe: function(src){
+        return !src ? '' : '<iframe src="'+ src +'?rel=0" allowfullscreen></iframe>';
+    },
+    replaceText: text => {
+        return text.replace(/^\s+/, '')
+            .replace(/\s+$/, '')
+            .replace(/\n{3,}/g, "\n\n")
+    },
+    markActiveButtonWithParents: elem => {
+        $('li button.active').removeClass('active')
+        let mark = (e) => {
+            e.addClass("active");
+            var parent = e.closest('ul').closest('li').find('>button');
+            if (parent.length) {
+                mark(parent);
+            }
+        };
+        mark(elem);
+    },
+    getActiveClass: obj => {
+        return Boolean(localStorage.lastLessonId) && localStorage.lastLessonId.includes(obj.id)
+            ? "active"
+            : "";
+    },
+    // Function to recursively build the tree
+    buildTree: function(parent, data){
+        let propListName;
+        let id;
+        switch (true) {
+            case data.directions && data.directions.length > 0:
+                propListName = 'directions';
+                data.id = 'root';
+                break;
+            case data.courses && data.courses.length > 0:
+                propListName = 'courses';
+                break;
+            default:
+                propListName = 'lessons';
+        }
+
+        let isRoot = !data.title;
+        let searchSpan = '<span class=\\"highlight\\">';
+        let jsonData = JSON.stringify(data);
+        let isSearchFound = jsonData.includes(searchSpan);
+        let isListHidden = !isRoot
+            && (!pageObj.searchStr.length
+                || pageObj.searchStr.length
+                && !isSearchFound);
+
+        let isButtonHidden = propListName === 'lessons'
+            && pageObj.searchStr.length
+            && !isSearchFound;
+
+        let li = $("<li>").addClass("visible");
+        let button = $(`<button id="${data.id}">`).html(isRoot ? 'Курси' : data.title);
+        button.addClass(pageObj.getActiveClass(data));
+        li.append(button);
+
+        if (data[propListName] && data[propListName].length > 0) {
+            let ul = isListHidden ? $("<ul>").hide() : $("<ul>"); // Initially hide child elements
+            data[propListName].forEach(function (node, i) {
+                node.id = data.id + i + 'e';
+                pageObj.buildTree(ul, node);
+            });
+            li.append(ul);
+            // Toggle visibility with animation on click
+            button.click(function () {
+                ul.slideToggle(500);
+                pageObj.updateContent(data); // Update content on tree node click
+            });
+        } else {
+            button.click(function () {
+                pageObj.updateContent(data); // Update content on tree node click
+                pageObj.markActiveButtonWithParents($(this));
+                localStorage.lastLessonId = data.id;
+            });
+        }
+        if(isButtonHidden){
+            li.hide();
+        }
+        parent.append(li);
+    },
+    // Function to update content based on selected node
+    updateContent: function(data) {
+        if (data.materials) {
+            // If it's a lesson node
+            $("#courseInfo").hide();
+            $("#lectureInfo").fadeIn(500);
+
+            // Update lecture content
+            var lesson = data; // For simplicity, consider the first lesson
+            let videoElem = $("#videoSrc");
+            if(lesson.videoSrc){
+                videoElem.html(pageObj.getIframe(lesson.videoSrc));
+                videoElem.show();
+            } else {
+                videoElem.hide();
+            }
+            $("#lectureTitle").html(pageObj.replaceText(lesson.title));
+            $("#lectureDescriptionText").html(pageObj.replaceText(lesson.description));
+            // Update additional materials list
+            var materialsList = $("#materialsList");
+            materialsList.empty(); // Clear previous materials
+            let initMaterials = () => {
+                lesson.materials.forEach(function (material) {
+                    var listItem = $("<li>").html(material.title + ": ");
+                    var materialLink = $("<a>")
+                        .attr("href", material.fileSrc)
+                        .attr("target", "_blank")
+                        .text("Download")
+                        .appendTo(listItem);
+                    materialsList.append(listItem);
+                });
+                $('#lectureMaterials').show();
+            };
+            (!lesson.materials || lesson.materials.length == 0)
+                ? $('#lectureMaterials').hide()
+                : initMaterials();
+
+        } else if (data.lessons && data.lessons.length > 0) {
+            // If it's a course node
+            $("#lectureInfo").hide();
+            $("#courseInfo").fadeIn(500);
+
+            // Update course content
+            var course = data; // For simplicity, consider the first course
+            $("#courseImage").attr("src", course.imgSrc);
+            $("#courseTitle").html(pageObj.replaceText(course.title));
+            $("#courseDescription").html(pageObj.replaceText(course.description));
+        }
+    },
+    registerListeners: function(){
+        // Обробник події для кнопки пошуку
+        $("#searchButton").click(function () {
+            var searchTerm = $("#searchInput").val().trim().toLowerCase();
+            pageObj.hideAllNodes();
+            pageObj.search(searchTerm);
+        });
+
+        // Обробник події для кнопки очищення тексту
+        $("#clearButton").click(function () {
+            $("#searchInput").val('');
+            pageObj.clearSearch();
+        });
+
+        // Обробник події для комбінації гарячих клавіш Ctrl+F
+        $(document).keydown(function (e) {
+            if (e.ctrlKey && e.keyCode === 70) {
+                // Відобразити елемент пошуку
+                $("#searchContainer").show();
+                $("#searchInput").focus();
+                e.preventDefault();
+            }
+        });
+
+        // Обробник події для клавіші Esc
+        $(document).keyup(function (e) {
+            if (e.keyCode === 27) {
+                // Сховати елемент пошуку
+                $("#searchContainer").hide();
+            }
+        });
+
+        // Обробник події для клавіші Enter
+        $(document).keyup(function (e) {
+            if (e.keyCode === 13) {
+                $("#searchButton").click();
+            }
+        });
+    },
+    hideAllNodes: function() {
+        // Сховати всі елементи дерева
+        $('#jsonTree>li>ul>li ul,#courseInfo,#lectureInfo').hide()
+    },
+    search: function(term){
+        term = term.replace(/["]/g, '\\\\"');
+        let regSearch = new RegExp(`(?<=(?:title|description)[":\s]{3,5})([^"]*)(${term})`,`gi`);
+        let regReplace = `$1<span class=\\"highlight\\">$2</span>`;
+        let json = localStorage.coursesObj.replace(regSearch, regReplace);
+        pageObj.searchStr = term;
+        pageObj.refreshTree(json);
+    },
+    clearSearch: function() {
+        // Сховати всі елементи дерева
+        pageObj.searchStr = '';
+        pageObj.hideAllNodes();
+        pageObj.refreshTree();
     }
 }
