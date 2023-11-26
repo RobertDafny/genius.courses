@@ -124,7 +124,7 @@ courseObj = {
 treeObj = {
     courses: [],
     isInit: function(){
-        return treeObj.courses.length !== 0;
+        return Boolean(treeObj.courses.length);
     },
     initCourses: async function(){
         await new Promise(resolve => setTimeout(resolve,3000));
@@ -144,7 +144,8 @@ treeObj = {
         || window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
         }
-        if(window.location.pathname !== startPage.replace(/\/uk/, '') && !treeObj.isInit()){
+        if(!window.location.pathname.includes(startPage.replace(/\/uk/, '')
+            && !treeObj.isInit())){
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
