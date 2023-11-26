@@ -5,7 +5,175 @@
     <title>Курси | Genius Space</title>
     <link rel="icon" href="/favicon-512x512-1-32x32.png" sizes="32x32">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1user-scalable=0">
-    <link rel="import" type="text/css" href="https://raw.githubusercontent.com/RobertDafny/genius.courses/main/courses.css">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap&subset=cyrillic);.loader {
+        display: block
+      }
+      iframe {
+        height: 100%;
+        width: 100%;
+      }
+      #materialsList{
+        padding-left: 0 !important;
+        padding-top: 10px !important;
+      }
+      #lectureDescription,#courseDescription{
+        white-space: pre-wrap;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+      }
+      #content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: overlay;
+        align-items: center;
+        /*justify-content: center;*/
+        background-color: #f0f0f0;
+        padding: 20px;
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+      #tree {
+        flex: 1;
+        overflow: overlay;
+        padding: 20px;
+      }
+      .tree li{
+        list-style: none;
+      }
+      .tree li {
+        margin: 0;
+        padding: 10px 0;
+        position: relative;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+      .tree li.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .tree li::before, .tree li::after {
+        content: '';
+        left: -20px;
+        position: absolute;
+        right: auto;
+      }
+      .tree li::before {
+        border-left: 1px solid #ccc;
+        bottom: 0;
+        height: 100%;
+      }
+      .tree li::after {
+        border-top: 1px solid #ccc;
+        height: 20px;
+        top: 25px;
+        width: 20px;
+      }
+      .tree li button {
+        background-color: #fff;
+        border: 1px solid #ccc !important;
+        border-radius: 3px;
+        padding: 5px 10px;
+      }
+      /* Styles for content blocks */
+      .content-block {
+        /*margin-bottom: 20px;*/
+      }
+      .course-info-block,
+      .lecture-info-block {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        display: none;
+      }
+      #content img {
+        max-width: 100%;
+        height: auto;
+      }
+      /* Styles for additional materials list */
+      .material-list {
+        list-style: none;
+        padding: 0;
+      }
+      .material-list li {
+        margin-bottom: 10px;
+      }
+      .material-list a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+      }
+      ul,p {
+        padding: revert !important;
+        margin: revert !important;
+      }
+      li button {
+        text-align: left !important;
+      }
+      #videoSrc{
+        height: 340px;
+        min-width: 500px;
+      }
+      #searchContainer {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        z-index: 5;
+      }
+      #searchInput {
+        margin-right: 10px;
+        padding: 5px;
+        border-color: #70b0ff;
+      }
+      #searchButton {
+        background-color: #70b0ff;
+      }
+      #clearButton {
+        background-color: gainsboro;
+      }
+      #searchButton, #clearButton {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .highlight {
+        background-color: #6cff92;
+      }
+      html {
+        line-height: 1 !important;
+      }
+      body {
+        font-weight: 500 !important;
+        font-family: Montserrat,sans-serif !important;
+      }
+      button {
+        cursor: pointer;
+        font-family: Montserrat,sans-serif !important;
+      }
+      a, body, button, canvas, caption, center, div, embed, html, iframe, img, li, span, ul, var, video{
+        font: inherit;
+        border: 0;
+      }
+      h2, h3 {
+        margin: 0;
+      }
+      button, input, select {
+        font-family: Montserrat,sans-serif;
+        border-radius: 0;
+        outline: none !important;
+      }
+      li button.active, ul li.active {
+        background-color: #fffaf2;
+      }
+    </style>
 </head>
 <body>
   <div id="searchContainer">
