@@ -178,8 +178,8 @@ fileObj = {
 }
 pageObj = {
     coursesObj: null,
-    loginPage: '/login',
-    startPage: '/free',
+    loginPage: '/uk/login',
+    startPage: '/uk/free',
     searchStr: '',
     init: async ()=>{
         if(!window.location.pathname.includes(pageObj.startPage)
