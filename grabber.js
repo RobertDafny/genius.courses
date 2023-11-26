@@ -242,7 +242,7 @@ pageObj = {
         mark(elem);
     },
     getActiveClass: obj => {
-        return Boolean(localStorage.lastLessonId) && locainitlStorage.lastLessonId.includes(obj.id)
+        return Boolean(localStorage.lastLessonId) && localStorage.lastLessonId.includes(obj.id)
             ? "active"
             : "";
     },
