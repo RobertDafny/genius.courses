@@ -150,7 +150,7 @@ treeObj = {
         if(!window.location.pathname.includes(startPage.replace(/\/uk/, '')
             && !treeObj.isInit())){
             window.location.href = window.location.origin + startPage;
-            return Promise.reject(new Error('Go to the start page...'));
+            return Promise.reject(new Error('Go to the start page...')).catch(console.log);
         }
         await treeObj.initCourses();
     },
@@ -183,7 +183,7 @@ fileObj = {
 pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
-    startPage: '/uk/login',//'/uk/free',
+    startPage: '/uk/login', //'/uk/free',
     searchStr: '',
     // Set to true if you need to get new courses
     isActiveGrabber: true,
