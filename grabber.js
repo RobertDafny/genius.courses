@@ -147,12 +147,12 @@ treeObj = {
             || window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
         }
-        if(!window.location.pathname.includes(startPage.replace(/\/uk/, ''))
+        if(window.location.pathname !== startPage
             && !treeObj.isInit()){
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
-        // pageObj.addInfoBlock();
+        pageObj.addInfoBlock();
         await treeObj.initCourses();
     },
     next: async function(){
