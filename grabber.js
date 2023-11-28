@@ -21,10 +21,12 @@ lessonObj = {
     materials: [],
     initMaterials: function(){
         let listCss = '.lesson-materials__list li';
-        $(listCss).each(function(i,e){
-            materialObj.init(e);
-            lessonObj.materials.push(Object.assign({}, materialObj))
-        })
+        if($(listCss).length){
+            $(listCss).each(function(i,e){
+                materialObj.init(e);
+                lessonObj.materials.push(Object.assign({}, materialObj))
+            })
+        }
     },
     clean: function(){
         lessonObj.title = null;
@@ -112,13 +114,13 @@ courseObj = {
     },
     getCourseNavButton: function(){
         let courseCss = '.breadcrumbs li:nth-child(2) a, .test-header__close a';
-        return $(courseCss);
+        return $(courseCss)[0];
     },
     next: async function(){
         courseObj.lessons.push(Object.assign({}, lessonObj));
         let courseElem = courseObj.getCourseNavButton();
         courseElem.click();
-        await courseObj.initLessons();
+        await courseObj.initLessons().catch(console.log);
     }
 }
 treeObj = {
