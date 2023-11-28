@@ -21,12 +21,10 @@ lessonObj = {
     materials: [],
     initMaterials: function(){
         let listCss = '.lesson-materials__list li';
-        if(listCss.length){
-            $(listCss).each(function(i,e){
-                materialObj.init(e);
-                lessonObj.materials.push(Object.assign({}, materialObj))
-            })
-        }
+        $(listCss).each(function(i,e){
+            materialObj.init(e);
+            lessonObj.materials.push(Object.assign({}, materialObj))
+        })
     },
     clean: function(){
         lessonObj.title = null;
@@ -81,7 +79,7 @@ courseObj = {
         let lessonList = $(lessonListCss);
         if(courseObj.lessons.length < lessonList.length){
             lessonList[courseObj.lessons.length].click();
-            await lessonObj.init().catch(console.log);
+            await lessonObj.init()
         } else {
             courseObj.getCourseNavButton().click();
             await new Promise(resolve => setTimeout(resolve,3000));
