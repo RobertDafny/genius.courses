@@ -183,7 +183,7 @@ fileObj = {
 pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
-    startPage: pageObj.loginPage,//'/uk/free',
+    startPage: '/uk/login',//'/uk/free',
     searchStr: '',
     // Set to true if you need to get new courses
     isActiveGrabber: true,
