@@ -21,10 +21,12 @@ lessonObj = {
     materials: [],
     initMaterials: function(){
         let listCss = '.lesson-materials__list li';
-        $(listCss).each(function(i,e){
-            materialObj.init(e);
-            lessonObj.materials.push(Object.assign({}, materialObj))
-        })
+        if(listCss.length){
+            $(listCss).each(function(i,e){
+                materialObj.init(e);
+                lessonObj.materials.push(Object.assign({}, materialObj))
+            })
+        }
     },
     clean: function(){
         lessonObj.title = null;
@@ -37,7 +39,7 @@ lessonObj = {
         lessonObj.clean();
         let titleCss = '.breadcrumbs li:nth-child(3) a, div.tests-header__title';
         let videoCss = '.plyr__video-embed__container iframe, .plyr__video-wrapper  iframe';
-        let descCss = 'div.education-desc, div.tests-questions__name';
+        let descCss = 'div.education-desc, div.tests-questions__name, div.tests-content';
         await new Promise(resolve => {
             setTimeout(async function tick(){
                 if($(descCss).length){
@@ -79,7 +81,7 @@ courseObj = {
         let lessonList = $(lessonListCss);
         if(courseObj.lessons.length < lessonList.length){
             lessonList[courseObj.lessons.length].click();
-            await lessonObj.init()
+            await lessonObj.init().catch(console.log);
         } else {
             courseObj.getCourseNavButton().click();
             await new Promise(resolve => setTimeout(resolve,3000));
@@ -112,7 +114,7 @@ courseObj = {
     },
     getCourseNavButton: function(){
         let courseCss = '.breadcrumbs li:nth-child(2) a, .test-header__close a';
-        return $(courseCss)[0];
+        return $(courseCss);
     },
     next: async function(){
         courseObj.lessons.push(Object.assign({}, lessonObj));
