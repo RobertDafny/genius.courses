@@ -218,6 +218,7 @@ pageObj = {
         try{
             let htmlTxt = await fetch(fileUrl).then(response => response.text());
             document.write(htmlTxt);
+            console.clear();
         } catch(e){
             return Promise.reject(new Error('Помилка при отриманні файлу index.html'));
         }
