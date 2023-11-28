@@ -214,12 +214,12 @@ pageObj = {
             class: 'info_block',
             text: txt
         }).css({
-            'position': 'sticky',
+            'position': 'fixed',
             'text-align': 'center',
             'background-color': 'yellow',
-            'top': '100px',
+            'width': '100%',
+            'padding': '5px',
             'z-index': 100,
-            'padding': '15px'
         }).prependTo($('body'));
     },
     refreshTree: (json) => {
