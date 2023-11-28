@@ -152,7 +152,7 @@ treeObj = {
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
-        pageObj.addInfoBlock();
+        // pageObj.addInfoBlock();
         await treeObj.initCourses();
     },
     next: async function(){
