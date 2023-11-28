@@ -152,6 +152,7 @@ treeObj = {
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
+        pageObj.addInfoBlock();
         await treeObj.initCourses();
     },
     next: async function(){
@@ -206,6 +207,13 @@ pageObj = {
         await pageObj.setNewHtml();
         // Initialize the tree with the example JSON data
         pageObj.buildTree($("#jsonTree"), pageObj.coursesObj);
+    },
+    addInfoBlock: () => {
+        let txt = 'Запущено процес стягування курсів, по завершенню буде сформовано json-файл результатів.';
+        $("<div>", {
+            class: "info_block",
+            text: txt
+        }).prependTo($('body'));
     },
     refreshTree: (json) => {
         let obj = (!json) ? pageObj.coursesObj : JSON.parse(json);
