@@ -140,8 +140,11 @@ treeObj = {
     },
     init: async function(){
         let startPage = '/uk/courses';
+        if(!pageObj.isActiveGrabber){
+            return Promise.reject(new Error('Функціонал стягування курсів вимкнено!'))
+        }
         if(window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))
-        || window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
+            || window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Перед стягуванням курсів, користувач має увійти під своїм логіном!'));
         }
         if(!window.location.pathname.includes(startPage.replace(/\/uk/, '')
@@ -180,14 +183,18 @@ fileObj = {
 pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
-    startPage: '/uk/login',//'/uk/free',
+    startPage: pageObj.loginPage,//'/uk/free',
     searchStr: '',
+    // Set to true if you need to get new courses
+    isActiveGrabber: true,
     init: async ()=>{
-        if(!window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
+        if(pageObj.isActiveGrabber
+        && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
         && !window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
             return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
         }
-        if(!window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
+        if(pageObj.isActiveGrabber
+        && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             window.location.href = window.location.origin + pageObj.startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
@@ -196,14 +203,15 @@ pageObj = {
             localStorage.coursesObj = JSON.stringify(json);
         }
         pageObj.coursesObj = JSON.parse(localStorage.coursesObj);
-        await pageObj.setNewHtml().then(console.log);
+        await pageObj.setNewHtml();
         // Initialize the tree with the example JSON data
         pageObj.buildTree($("#jsonTree"), pageObj.coursesObj);
     },
     refreshTree: (json) => {
         let obj = (!json) ? pageObj.coursesObj : JSON.parse(json);
-        $("#jsonTree").empty();
-        pageObj.buildTree($("#jsonTree"), obj);
+        let treeEl = $("#jsonTree");
+        treeEl.empty();
+        pageObj.buildTree(treeEl, obj);
     },
     setNewHtml: async function(){
         let fileUrl = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/index.html';
@@ -235,7 +243,7 @@ pageObj = {
         $('li button.active').removeClass('active')
         let mark = (e) => {
             e.addClass("active");
-            var parent = e.closest('ul').closest('li').find('>button');
+            let parent = e.closest('ul').closest('li').find('>button');
             if (parent.length) {
                 mark(parent);
             }
@@ -250,9 +258,8 @@ pageObj = {
     // Function to recursively build the tree
     buildTree: function(parent, data){
         let propListName;
-        let id;
         switch (true) {
-            case data.directions && data.directions.length > 0:
+            case data['directions'] && data['directions'].length > 0:
                 propListName = 'directions';
                 data.id = 'root';
                 break;
@@ -313,7 +320,7 @@ pageObj = {
             $("#lectureInfo").fadeIn(500);
 
             // Update lecture content
-            var lesson = data; // For simplicity, consider the first lesson
+            let lesson = data; // For simplicity, consider the first lesson
             let videoElem = $("#videoSrc");
             if(lesson.videoSrc){
                 videoElem.html(pageObj.getIframe(lesson.videoSrc));
@@ -324,13 +331,12 @@ pageObj = {
             $("#lectureTitle").html(pageObj.replaceText(lesson.title));
             $("#lectureDescriptionText").html(pageObj.replaceText(lesson.description));
             // Update additional materials list
-            var materialsList = $("#materialsList");
+            let materialsList = $("#materialsList");
             materialsList.empty(); // Clear previous materials
             let initMaterials = () => {
                 lesson.materials.forEach(function (material) {
-                    var listItem = $("<li>").html(material.title + ": ");
-                    var materialLink = $("<a>")
-                        .attr("href", material.fileSrc)
+                    let listItem = $("<li>").html(material.title + ": ");
+                    $("<a>").attr("href", material.fileSrc)
                         .attr("target", "_blank")
                         .text("Download")
                         .appendTo(listItem);
@@ -338,7 +344,7 @@ pageObj = {
                 });
                 $('#lectureMaterials').show();
             };
-            (!lesson.materials || lesson.materials.length == 0)
+            (!lesson.materials || lesson.materials.length === 0)
                 ? $('#lectureMaterials').hide()
                 : initMaterials();
 
@@ -348,7 +354,7 @@ pageObj = {
             $("#courseInfo").fadeIn(500);
 
             // Update course content
-            var course = data; // For simplicity, consider the first course
+            let course = data; // For simplicity, consider the first course
             $("#courseImage").attr("src", course.imgSrc);
             $("#courseTitle").html(pageObj.replaceText(course.title));
             $("#courseDescription").html(pageObj.replaceText(course.description));
@@ -357,7 +363,7 @@ pageObj = {
     registerListeners: function(){
         // Обробник події для кнопки пошуку
         $("#searchButton").click(function () {
-            var searchTerm = $("#searchInput").val().trim().toLowerCase();
+            let searchTerm = $("#searchInput").val().trim().toLowerCase();
             pageObj.hideAllNodes();
             pageObj.search(searchTerm);
         });
