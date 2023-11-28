@@ -211,8 +211,15 @@ pageObj = {
     addInfoBlock: () => {
         let txt = 'Запущено процес стягування курсів, по завершенню буде сформовано json-файл результатів.';
         $("<div>", {
-            class: "info_block",
+            class: 'info_block',
             text: txt
+        }).css({
+            'position': 'sticky',
+            'text-align': 'center',
+            'background-color': 'yellow',
+            'top': '100px',
+            'z-index': 100,
+            'padding': '15px'
         }).prependTo($('body'));
     },
     refreshTree: (json) => {
