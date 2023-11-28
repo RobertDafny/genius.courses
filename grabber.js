@@ -192,7 +192,8 @@ pageObj = {
         if(pageObj.isActiveGrabber
         && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
         && !window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
-            return Promise.reject(new Error('Функціонал перегляду курсів можливий тільки при виході з аккаунту!'));
+            let msg = 'Функціонал перегляду курсів можливий після зміни pageObj.isActiveGrabber або вихода з аккаунту!';
+            return Promise.reject(new Error(msg));
         }
         if(pageObj.isActiveGrabber
         && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
