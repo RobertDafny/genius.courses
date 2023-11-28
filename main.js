@@ -37,7 +37,7 @@ lessonObj = {
         lessonObj.clean();
         let titleCss = '.breadcrumbs li:nth-child(3) a, div.tests-header__title';
         let videoCss = '.plyr__video-embed__container iframe, .plyr__video-wrapper  iframe';
-        let descCss = 'div.education-desc, div.tests-questions__name';
+        let descCss = 'div.education-desc, div.tests-questions__name, div.tests-content';
         await new Promise(resolve => {
             setTimeout(async function tick(){
                 if($(descCss).length){
@@ -111,7 +111,7 @@ courseObj = {
         courseObj.lessons = [];
     },
     getCourseNavButton: function(){
-        let courseCss = '.breadcrumbs li:nth-child(2) a,.test-header__close a';
+        let courseCss = '.breadcrumbs li:nth-child(2) a, .test-header__close a';
         return $(courseCss);
     },
     next: async function(){
