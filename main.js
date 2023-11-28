@@ -21,10 +21,12 @@ lessonObj = {
     materials: [],
     initMaterials: function(){
         let listCss = '.lesson-materials__list li';
-        $(listCss).each(function(i,e){
-            materialObj.init(e);
-            lessonObj.materials.push(Object.assign({}, materialObj))
-        })
+        if(listCss.length){
+            $(listCss).each(function(i,e){
+                materialObj.init(e);
+                lessonObj.materials.push(Object.assign({}, materialObj))
+            })
+        }
     },
     clean: function(){
         lessonObj.title = null;
