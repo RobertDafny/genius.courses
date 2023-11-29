@@ -214,7 +214,7 @@ let fileObj = {
         )
     }
 }
-let pageObj = {
+const pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
     startPage: '/uk/login', //'/uk/free',
