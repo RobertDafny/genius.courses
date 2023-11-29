@@ -130,6 +130,20 @@ treeObj = {
     },
     initCourses: async function(){
         await new Promise(resolve => setTimeout(resolve,3000));
+        let btnBaseCss = 'div.btn__load-more button'
+        let btnVisibleCss = 'div.btn__load-more:not([style^="display"]) button';
+        let btnDisablesCss = 'div.btn__load-more button[disabled="disabled"]';
+        await new Promise(resolve => {
+            setTimeout(async function tick(){
+                let btn = $(btnBaseCss);
+                if(!btn.length || btn.length && !$(btnVisibleCss).length){
+                    return resolve();
+                } else if(!$(btnDisablesCss).length) {
+                    btn.click();
+                }
+                await new Promise(() => setTimeout(tick,500));
+            }, 500);
+        });
         let courseListCss = 'a.courses-item__img';
         let courseList = $(courseListCss);
         if(treeObj.courses.length < courseList.length){
