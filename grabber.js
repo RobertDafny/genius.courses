@@ -146,7 +146,8 @@ treeObj = {
         });
         let courseListCss = 'a.courses-item__img';
         let courseList = $(courseListCss);
-        if(treeObj.courses.length < courseList.length){
+        if(treeObj.courses.length < courseList.length){        
+            console.log(`Знайдено курсів: ${courseList.length}`)
             courseList[treeObj.courses.length].click();
             await new Promise(resolve => setTimeout(resolve,3000));
             await courseObj.init()
