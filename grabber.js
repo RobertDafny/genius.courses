@@ -28,7 +28,7 @@ let lessonObj = {
             setTimeout(async function tick(){
                 if($(descCss).length){
                     if($(videoCss).length === 0){
-                        await new Promise(resolve => setTimeout(resolve,1000));
+                        await new Promise(resolve => setTimeout(resolve,3000));
                     }
                     return resolve();
                 }
@@ -118,6 +118,7 @@ let courseObj = {
         return $(courseCss)[0];
     },
     next: async function(){
+        lessonObj.isTest = Boolean($('div.tests-header__title').length)
         courseObj.lessons.push(Object.assign({}, lessonObj));
         let courseElem = courseObj.getCourseNavButton();
         courseElem.click();
@@ -161,7 +162,7 @@ let treeObj = {
         let courseListCss = 'a.courses-item__img';
         let courseList = $(courseListCss);
         if(treeObj.courses.length < courseList.length){
-            console.log(`Знайдено курсів: ${courseList.length}\nЗавантажується курс: ${treeObj.courses.length}`)
+            console.log(`Знайдено курсів: ${courseList.length}\nЗавантажується курс: ${treeObj.courses.length + 1}`)
             courseList[treeObj.courses.length].click();
             await new Promise(resolve => setTimeout(resolve,3000));
             await courseObj.init()
@@ -175,21 +176,23 @@ let treeObj = {
     },
     openCourseList: async function(){
         let btnBaseCss = 'div.btn__load-more button'
-        let btnVisibleCss = 'div.btn__load-more:not([style^="display"]) button';
         let btnDisableCss = 'div.btn__load-more button[disabled="disabled"]';
+        let courseItemCss = `.courses-item[index="${treeObj.courses.length}"]`;
         return new Promise(resolve => {
             setTimeout(async function tick(){
-                let btn = $(btnBaseCss);
-                if(btn.length && !$(btnVisibleCss).length){
+                if($(courseItemCss).length){
                     return resolve();
                 } else if(!$(btnDisableCss).length) {
-                    btn.click();
+                    $(btnBaseCss).click();
                 }
                 await new Promise(() => setTimeout(tick,500));
             }, 500);
         });
     },
     next: async function(){
+        courseObj.lessons = courseObj.lessons.filter(lessObj => {
+            return !lessObj.isTest;
+        })
         treeObj.courses.push(Object.assign({}, courseObj));
         treeObj.save();
         await treeObj.initCourses();
