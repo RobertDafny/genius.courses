@@ -19,22 +19,6 @@ lessonObj = {
     url: null,
     videoSrc: null,
     materials: [],
-    initMaterials: function(){
-        let listCss = '.lesson-materials__list li';
-        if($(listCss).length){
-            $(listCss).each(function(i,e){
-                materialObj.init(e);
-                lessonObj.materials.push(Object.assign({}, materialObj))
-            })
-        }
-    },
-    clean: function(){
-        lessonObj.title = null;
-        lessonObj.description = null;
-        lessonObj.url = null;
-        lessonObj.videoSrc = null;
-        lessonObj.materials = [];
-    },
     init: async function(){
         lessonObj.clean();
         let titleCss = '.breadcrumbs li:nth-child(3) a, div.tests-header__title';
@@ -60,6 +44,22 @@ lessonObj = {
         }
         lessonObj.initMaterials();
         await courseObj.next();
+    },
+    initMaterials: function(){
+        let listCss = '.lesson-materials__list li';
+        if($(listCss).length){
+            $(listCss).each(function(i,e){
+                materialObj.init(e);
+                lessonObj.materials.push(Object.assign({}, materialObj))
+            })
+        }
+    },
+    clean: function(){
+        lessonObj.title = null;
+        lessonObj.description = null;
+        lessonObj.url = null;
+        lessonObj.videoSrc = null;
+        lessonObj.materials = [];
     }
 }
 courseObj = {
@@ -68,6 +68,18 @@ courseObj = {
     url: null,
     imgSrc: null,
     lessons: [],
+    init: async function(){
+        return new Promise(function(resolve){
+            setTimeout(function(){
+                courseObj.clean();
+                let courseElem = $('.breadcrumbs li:nth-child(3) a');
+                courseObj.title = courseElem[0].innerText;
+                courseObj.url = window.location.href;
+                courseObj.initLessons();
+                resolve();
+            }, 3000);
+        })
+    },
     initLessons: async function(){
         let lessonListCss = 'a.courses-dashboard_lesson-wrap';
         await new Promise(resolve => {
@@ -88,22 +100,11 @@ courseObj = {
             let descCss = '.courses-item__desc';
             let imgCss = '.image-seo-wrapper img';
             let courseIndex = treeObj.courses.length;
+            await treeObj.openCourseList();
             courseObj.description = $(descCss)[courseIndex].innerText;
             courseObj.imgSrc = $(imgCss)[courseIndex].getAttribute('src');
             await treeObj.next();
         }
-    },
-    init: async function(){
-        return new Promise(function(resolve){
-            setTimeout(function(){
-                courseObj.clean();
-                let courseElem = $('.breadcrumbs li:nth-child(3) a');
-                courseObj.title = courseElem[0].innerText;
-                courseObj.url = window.location.href;
-                courseObj.initLessons();
-                resolve();
-            }, 3000);
-        })
     },
     clean: function(){
         courseObj.title = null;
@@ -125,36 +126,6 @@ courseObj = {
 }
 treeObj = {
     courses: [],
-    isInit: function(){
-        return Boolean(treeObj.courses.length);
-    },
-    initCourses: async function(){
-        await new Promise(resolve => setTimeout(resolve,3000));
-        let btnBaseCss = 'div.btn__load-more button'
-        let btnVisibleCss = 'div.btn__load-more:not([style^="display"]) button';
-        let btnDisablesCss = 'div.btn__load-more button[disabled="disabled"]';
-        await new Promise(resolve => {
-            setTimeout(async function tick(){
-                let btn = $(btnBaseCss);
-                if(!btn.length || btn.length && !$(btnVisibleCss).length){
-                    return resolve();
-                } else if(!$(btnDisablesCss).length) {
-                    btn.click();
-                }
-                await new Promise(() => setTimeout(tick,500));
-            }, 500);
-        });
-        let courseListCss = 'a.courses-item__img';
-        let courseList = $(courseListCss);
-        if(treeObj.courses.length < courseList.length){        
-            console.log(`Знайдено курсів: ${courseList.length}`)
-            courseList[treeObj.courses.length].click();
-            await new Promise(resolve => setTimeout(resolve,3000));
-            await courseObj.init()
-        } else {
-            treeObj.unload();
-        }
-    },
     init: async function(){
         let startPage = '/uk/courses';
         if(!pageObj.isActiveGrabber){
@@ -171,6 +142,39 @@ treeObj = {
         }
         pageObj.addInfoBlock();
         await treeObj.initCourses();
+    },
+    initCourses: async function(){
+        await new Promise(resolve => setTimeout(resolve,3000));
+        await treeObj.openCourseList();
+        let courseListCss = 'a.courses-item__img';
+        let courseList = $(courseListCss);
+        if(treeObj.courses.length < courseList.length){
+            console.log(`Знайдено курсів: ${courseList.length}`)
+            courseList[treeObj.courses.length].click();
+            await new Promise(resolve => setTimeout(resolve,3000));
+            await courseObj.init()
+        } else {
+            treeObj.unload();
+        }
+    },
+    isInit: function(){
+        return Boolean(treeObj.courses.length);
+    },
+    openCourseList: async function(){
+        let btnBaseCss = 'div.btn__load-more button'
+        let btnVisibleCss = 'div.btn__load-more:not([style^="display"]) button';
+        let btnDisablesCss = 'div.btn__load-more button[disabled="disabled"]';
+        return new Promise(resolve => {
+            setTimeout(async function tick(){
+                let btn = $(btnBaseCss);
+                if(!btn.length || btn.length && !$(btnVisibleCss).length){
+                    return resolve();
+                } else if(!$(btnDisablesCss).length) {
+                    btn.click();
+                }
+                await new Promise(() => setTimeout(tick,500));
+            }, 500);
+        });
     },
     next: async function(){
         treeObj.courses.push(Object.assign({}, courseObj));
