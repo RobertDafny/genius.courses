@@ -1,4 +1,4 @@
-materialObj = {
+let materialObj = {
     title: null,
     fileSrc: null,
     init: function(elem){
@@ -13,7 +13,7 @@ materialObj = {
         materialObj.fileSrc = null;
     }
 }
-lessonObj = {
+let lessonObj = {
     title: null,
     description: null,
     url: null,
@@ -62,7 +62,7 @@ lessonObj = {
         lessonObj.materials = [];
     }
 }
-courseObj = {
+let courseObj = {
     title: null,
     description: null,
     url: null,
@@ -124,7 +124,7 @@ courseObj = {
         await courseObj.initLessons().catch(console.log);
     }
 }
-treeObj = {
+let treeObj = {
     courses: [],
     init: async function(){
         let startPage = '/uk/courses';
@@ -140,8 +140,18 @@ treeObj = {
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
+        treeObj.refresh();
         pageObj.addInfoBlock();
         await treeObj.initCourses();
+    },
+    refresh: function (){
+        treeObj = JSON.parse(localStorage.grabberTreeObj);
+    },
+    save: function (){
+        localStorage.grabberTreeObj = treeObj.getJsonData();
+    },
+    destroy: function(){
+        localStorage.removeItem('grabberTreeObj');
     },
     initCourses: async function(){
         await new Promise(resolve => setTimeout(resolve,3000));
@@ -155,6 +165,7 @@ treeObj = {
             await courseObj.init()
         } else {
             treeObj.unload();
+            treeObj.destroy();
         }
     },
     isInit: function(){
@@ -167,17 +178,18 @@ treeObj = {
         return new Promise(resolve => {
             setTimeout(async function tick(){
                 let btn = $(btnBaseCss);
-                if(!btn.length || btn.length && !$(btnVisibleCss).length){
+                if(btn.length && !$(btnVisibleCss).length){
                     return resolve();
                 } else if(!$(btnDisableCss).length) {
                     btn.click();
                 }
-                await new Promise(() => setTimeout(tick,1000));
-            }, 1000);
+                await new Promise(() => setTimeout(tick,500));
+            }, 500);
         });
     },
     next: async function(){
         treeObj.courses.push(Object.assign({}, courseObj));
+        treeObj.save();
         await treeObj.initCourses();
     },
     run: async function(){
@@ -190,7 +202,7 @@ treeObj = {
         return JSON.stringify(treeObj);
     }
 }
-fileObj = {
+let fileObj = {
     name: "edu.genius.space.json",
     write: function(data){
         document.write(
@@ -202,7 +214,7 @@ fileObj = {
         )
     }
 }
-pageObj = {
+let pageObj = {
     coursesObj: null,
     loginPage: '/uk/login',
     startPage: '/uk/login', //'/uk/free',
