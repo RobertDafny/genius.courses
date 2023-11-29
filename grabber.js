@@ -145,7 +145,9 @@ let treeObj = {
         await treeObj.initCourses();
     },
     refresh: function (){
-        treeObj = JSON.parse(localStorage.grabberTreeObj);
+        if(Boolean(localStorage.grabberTreeObj)){
+            treeObj = JSON.parse(localStorage.grabberTreeObj);
+        }
     },
     save: function (){
         localStorage.grabberTreeObj = treeObj.getJsonData();
