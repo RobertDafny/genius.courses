@@ -146,7 +146,7 @@ let treeObj = {
     },
     refresh: function (){
         if(Boolean(localStorage.grabberTreeObj)){
-            treeObj = JSON.parse(localStorage.grabberTreeObj);
+            treeObj.courses = JSON.parse(localStorage.grabberTreeObj).courses;
         }
     },
     save: function (){
