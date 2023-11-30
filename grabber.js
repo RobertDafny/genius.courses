@@ -154,8 +154,8 @@ let treeObj = {
             } else if(localStorage.currentUrl === location.href){
                 location.reload();
             }
-            setTimeout(tick, 15000);
-        })
+            localStorage.timerReloadPageId = setTimeout(tick, 15000);
+        }, 15000)
     },
     timerReloadPageStop: function(){
         if(Boolean(localStorage.timerReloadPageId)){
