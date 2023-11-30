@@ -114,7 +114,7 @@ let courseObj = {
         }
     },
     save: function (){
-        localStorage.grabberCourseObj = courseObj.getJsonData();
+        localStorage.grabberCourseObj = JSON.stringify(courseObj);
     },
     destroy: function(){
         localStorage.removeItem('grabberCourseObj');
