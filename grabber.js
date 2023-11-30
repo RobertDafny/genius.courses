@@ -143,7 +143,25 @@ let treeObj = {
         }
         treeObj.refresh();
         pageObj.addInfoBlock();
+        treeObj.timerReloadPageStart();
         await treeObj.initCourses();
+    },
+    timerReloadPageStart: function(){
+        treeObj.timerReloadPageStop();
+        localStorage.timerReloadPageId = setTimeout(function tick() {
+            if(!localStorage.currentUrl){
+                localStorage.currentUrl = location.href;
+            } else if(localStorage.currentUrl === location.href){
+                location.reload();
+            }
+            setTimeout(tick, 15000);
+        })
+    },
+    timerReloadPageStop: function(){
+        if(Boolean(localStorage.timerReloadPageId)){
+            clearTimeout(localStorage.timerReloadPageId);
+            localStorage.removeItem('timerReloadPageId');
+        }
     },
     refresh: function (){
         if(Boolean(localStorage.grabberTreeObj)){
@@ -155,6 +173,7 @@ let treeObj = {
     },
     destroy: function(){
         localStorage.removeItem('grabberTreeObj');
+        treeObj.timerReloadPageStop();
     },
     initCourses: async function(){
         await new Promise(resolve => setTimeout(resolve,3000));
@@ -187,10 +206,6 @@ let treeObj = {
                     && openedCourses === summaryCourses){
                     return resolve();
                 } else if(!$(btnDisableCss).length) {
-                    console.log(`openedCourses: ${openedCourses}, 
-                    summaryCourses: ${summaryCourses}, 
-                    openedCourses===summaryCourses: ${openedCourses===summaryCourses},
-                    $(courseItemCss).length: ${$(courseItemCss).length}`);
                     $(btnBaseCss).click();
                 }
                 await new Promise(() => setTimeout(tick,500));
