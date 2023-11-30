@@ -75,6 +75,7 @@ let courseObj = {
                 let courseElem = $('.breadcrumbs li:nth-child(3) a');
                 courseObj.title = courseElem[0].innerText;
                 courseObj.url = window.location.href;
+                courseObj.refresh();
                 courseObj.initLessons();
                 resolve();
             }, 3000);
@@ -103,8 +104,20 @@ let courseObj = {
             await treeObj.openCourseList();
             courseObj.description = $(descCss)[courseIndex].innerText;
             courseObj.imgSrc = $(imgCss)[courseIndex].getAttribute('src');
+            courseObj.destroy();
             await treeObj.next();
         }
+    },
+    refresh: function (){
+        if(Boolean(localStorage.grabberCourseObj)){
+            courseObj.lessons = JSON.parse(localStorage.grabberCourseObj).lessons;
+        }
+    },
+    save: function (){
+        localStorage.grabberCourseObj = courseObj.getJsonData();
+    },
+    destroy: function(){
+        localStorage.removeItem('grabberCourseObj');
     },
     clean: function(){
         courseObj.title = null;
@@ -120,6 +133,7 @@ let courseObj = {
     next: async function(){
         lessonObj.isTest = Boolean($('div.tests-header__title').length)
         courseObj.lessons.push(Object.assign({}, lessonObj));
+        courseObj.save();
         let courseElem = courseObj.getCourseNavButton();
         courseElem.click();
         await courseObj.initLessons().catch(console.log);
@@ -146,38 +160,8 @@ let treeObj = {
         treeObj.timerReloadPageStart();
         await treeObj.initCourses();
     },
-    timerReloadPageStart: function(){
-        treeObj.timerReloadPageStop();
-        localStorage.timerReloadPageId = setTimeout(function tick() {
-            if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
-                location.reload();
-            } else{
-                localStorage.currProgress = treeObj.getStrProgress();
-            }
-            localStorage.timerReloadPageId = setTimeout(tick, 30000);
-        }, 30000);
-    },
-    timerReloadPageStop: function(){
-        if(Boolean(localStorage.timerReloadPageId)){
-            clearTimeout(localStorage.timerReloadPageId);
-            localStorage.removeItem('timerReloadPageId');
-            localStorage.removeItem('currProgress');
-        }
-    },
-    getStrProgress: function(){
-        return `course.${treeObj.courses.length}.lesson.${courseObj.lessons.length}`;
-    },
-    refresh: function (){
-        if(Boolean(localStorage.grabberTreeObj)){
-            treeObj.courses = JSON.parse(localStorage.grabberTreeObj).courses;
-        }
-    },
-    save: function (){
-        localStorage.grabberTreeObj = treeObj.getJsonData();
-    },
-    destroy: function(){
-        localStorage.removeItem('grabberTreeObj');
-        treeObj.timerReloadPageStop();
+    isInit: function(){
+        return Boolean(treeObj.courses.length);
     },
     initCourses: async function(){
         await new Promise(resolve => setTimeout(resolve,3000));
@@ -194,8 +178,38 @@ let treeObj = {
             treeObj.destroy();
         }
     },
-    isInit: function(){
-        return Boolean(treeObj.courses.length);
+    getStrProgress: function(){
+        return `course.${treeObj.courses.length}.lesson.${courseObj.lessons.length}`;
+    },
+    timerReloadPageStart: function(){
+        treeObj.timerReloadPageStop();
+        localStorage.timerReloadPageId = setTimeout(function tick() {
+            if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
+                location.reload();
+            } else{
+                localStorage.currProgress = treeObj.getStrProgress();
+            }
+            localStorage.timerReloadPageId = setTimeout(tick, 15000);
+        }, 15000);
+    },
+    timerReloadPageStop: function(){
+        if(Boolean(localStorage.timerReloadPageId)){
+            clearTimeout(localStorage.timerReloadPageId);
+            localStorage.removeItem('timerReloadPageId');
+            localStorage.removeItem('currProgress');
+        }
+    },
+    refresh: function (){
+        if(Boolean(localStorage.grabberTreeObj)){
+            treeObj.courses = JSON.parse(localStorage.grabberTreeObj).courses;
+        }
+    },
+    save: function (){
+        localStorage.grabberTreeObj = treeObj.getJsonData();
+    },
+    destroy: function(){
+        localStorage.removeItem('grabberTreeObj');
+        treeObj.timerReloadPageStop();
     },
     openCourseList: async function(){
         let btnBaseCss = 'div.btn__load-more button'
@@ -225,7 +239,6 @@ let treeObj = {
         })
         treeObj.courses.push(Object.assign({}, courseObj));
         treeObj.save();
-        location.reload();
         await treeObj.initCourses();
     },
     run: async function(){
