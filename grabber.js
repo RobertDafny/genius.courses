@@ -149,10 +149,10 @@ let treeObj = {
     timerReloadPageStart: function(){
         treeObj.timerReloadPageStop();
         localStorage.timerReloadPageId = setTimeout(function tick() {
-            if(!localStorage.currentUrl){
-                localStorage.currentUrl = location.href;
-            } else if(localStorage.currentUrl === location.href){
+            if(Boolean(localStorage.currentUrl) && localStorage.currentUrl === location.href){
                 location.reload();
+            } else{
+                localStorage.currentUrl = location.href;
             }
             localStorage.timerReloadPageId = setTimeout(tick, 15000);
         }, 15000)
@@ -161,6 +161,7 @@ let treeObj = {
         if(Boolean(localStorage.timerReloadPageId)){
             clearTimeout(localStorage.timerReloadPageId);
             localStorage.removeItem('timerReloadPageId');
+            localStorage.removeItem('currentUrl')
         }
     },
     refresh: function (){
