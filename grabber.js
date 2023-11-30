@@ -185,6 +185,7 @@ let treeObj = {
         treeObj.timerReloadPageStop();
         localStorage.timerReloadPageId = setTimeout(function tick() {
             if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
+                localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? localStorage.reloadCounter + 1 : 1;
                 location.reload();
             } else{
                 localStorage.currProgress = treeObj.getStrProgress();
@@ -209,6 +210,8 @@ let treeObj = {
     },
     destroy: function(){
         localStorage.removeItem('grabberTreeObj');
+        console.log(`reloadCounter: ${localStorage.reloadCounter}`);
+        localStorage.removeItem('reloadCounter');
         treeObj.timerReloadPageStop();
     },
     openCourseList: async function(){
