@@ -182,7 +182,9 @@ let treeObj = {
         let summaryCourses = $('.filter-head__categories-info span:nth-child(3)').innerText;
         return new Promise(resolve => {
             setTimeout(async function tick(){
-                if($(courseItemCss).length || openedCourses === summaryCourses){
+                if($(courseItemCss).length
+                    || Boolean(openedCourses)
+                    && openedCourses === summaryCourses){
                     return resolve();
                 } else if(!$(btnDisableCss).length) {
                     $(btnBaseCss).click();
