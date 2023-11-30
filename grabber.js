@@ -149,20 +149,23 @@ let treeObj = {
     timerReloadPageStart: function(){
         treeObj.timerReloadPageStop();
         localStorage.timerReloadPageId = setTimeout(function tick() {
-            if(Boolean(localStorage.currentUrl) && localStorage.currentUrl === location.href){
+            if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
                 location.reload();
             } else{
-                localStorage.currentUrl = location.href;
+                localStorage.currProgress = treeObj.getStrProgress();
             }
             localStorage.timerReloadPageId = setTimeout(tick, 15000);
-        }, 15000)
+        }, 15000);
     },
     timerReloadPageStop: function(){
         if(Boolean(localStorage.timerReloadPageId)){
             clearTimeout(localStorage.timerReloadPageId);
             localStorage.removeItem('timerReloadPageId');
-            localStorage.removeItem('currentUrl')
+            localStorage.removeItem('currProgress');
         }
+    },
+    getStrProgress: function(){
+        return `course.${treeObj.courses.length}.lesson.${courseObj.lessons.length}`;
     },
     refresh: function (){
         if(Boolean(localStorage.grabberTreeObj)){
