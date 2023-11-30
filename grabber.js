@@ -154,8 +154,8 @@ let treeObj = {
             } else{
                 localStorage.currProgress = treeObj.getStrProgress();
             }
-            localStorage.timerReloadPageId = setTimeout(tick, 15000);
-        }, 15000);
+            localStorage.timerReloadPageId = setTimeout(tick, 30000);
+        }, 30000);
     },
     timerReloadPageStop: function(){
         if(Boolean(localStorage.timerReloadPageId)){
@@ -225,6 +225,7 @@ let treeObj = {
         })
         treeObj.courses.push(Object.assign({}, courseObj));
         treeObj.save();
+        location.reload();
         await treeObj.initCourses();
     },
     run: async function(){
