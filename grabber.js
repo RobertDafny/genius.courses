@@ -178,10 +178,10 @@ let treeObj = {
         let btnBaseCss = 'div.btn__load-more button'
         let btnDisableCss = 'div.btn__load-more button[disabled="disabled"]';
         let courseItemCss = `.courses-item[index="${treeObj.courses.length}"]`;
+        let openedCourses = $('.filter-head__categories-info span:nth-child(1)').innerText;
+        let summaryCourses = $('.filter-head__categories-info span:nth-child(3)').innerText;
         return new Promise(resolve => {
             setTimeout(async function tick(){
-                let openedCourses = $('.filter-head__categories-info span:nth-child(1)').innerText;
-                let summaryCourses = $('.filter-head__categories-info span:nth-child(3)').innerText;
                 if($(courseItemCss).length
                     || Boolean(openedCourses)
                     && openedCourses === summaryCourses){
