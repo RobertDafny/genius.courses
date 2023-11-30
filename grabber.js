@@ -187,6 +187,10 @@ let treeObj = {
                     && openedCourses === summaryCourses){
                     return resolve();
                 } else if(!$(btnDisableCss).length) {
+                    console.log(`openedCourses: ${openedCourses}, 
+                    summaryCourses: ${summaryCourses}, 
+                    openedCourses===summaryCourses: ${openedCourses===summaryCourses},
+                    $(courseItemCss).length: ${$(courseItemCss).length}`);
                     $(btnBaseCss).click();
                 }
                 await new Promise(() => setTimeout(tick,500));
