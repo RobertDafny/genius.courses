@@ -194,6 +194,9 @@ let treeObj = {
     next: async function(){
         courseObj.lessons = courseObj.lessons.filter(lessObj => {
             return !lessObj.isTest;
+        }).map(lessObj => {
+            delete(lessObj.isTest);
+            return lessObj;
         })
         treeObj.courses.push(Object.assign({}, courseObj));
         treeObj.save();
