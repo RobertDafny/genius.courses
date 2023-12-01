@@ -155,6 +155,7 @@ let treeObj = {
             window.location.href = window.location.origin + startPage;
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
+        treeObj.setStartTime();
         treeObj.refresh();
         pageObj.addInfoBlock();
         treeObj.timerReloadPageStart();
@@ -180,6 +181,19 @@ let treeObj = {
     },
     getStrProgress: function(){
         return `course.${treeObj.courses.length}.lesson.${courseObj.lessons.length}`;
+    },
+    setStartTime: function (){
+        if(!Boolean(localStorage.startTime)){
+            localStorage.startTime = Date.now();
+        }
+    },
+    showExecutionTime: function (){
+        let diff = Date.now() - localStorage.startTime;
+        localStorage.removeItem('startTime');
+        let h = Math.floor((diff/=1000)/60/60);
+        let m = Math.floor((diff-=h*3600)/60);
+        let s = Math.floor((diff- m*60)/60);
+        console.log(`Час виконання скрипту: ${h} год. ${m} хв. ${s} сек.`);
     },
     timerReloadPageStart: function(){
         treeObj.timerReloadPageStop();
@@ -213,6 +227,7 @@ let treeObj = {
         console.log(`reloadCounter: ${localStorage.reloadCounter}`);
         localStorage.removeItem('reloadCounter');
         treeObj.timerReloadPageStop();
+        treeObj.showExecutionTime();
     },
     openCourseList: async function(){
         let btnBaseCss = 'div.btn__load-more button'
