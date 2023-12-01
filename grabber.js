@@ -70,13 +70,13 @@ let courseObj = {
     lessons: [],
     init: async function(){
         return new Promise(function(resolve){
-            setTimeout(function(){
+            setTimeout(async function(){
                 courseObj.clean();
                 let courseElem = $('.breadcrumbs li:nth-child(3) a');
                 courseObj.title = courseElem[0].innerText;
                 courseObj.url = window.location.href;
-                courseObj.refresh();
-                courseObj.initLessons();
+                await courseObj.refresh();
+                await courseObj.initLessons();
                 resolve();
             }, 3000);
         })
@@ -108,7 +108,7 @@ let courseObj = {
             await treeObj.next();
         }
     },
-    refresh: function (){
+    refresh: async function (){
         if(Boolean(localStorage.grabberCourseObj)){
             courseObj.lessons = JSON.parse(localStorage.grabberCourseObj).lessons;
         }
@@ -156,8 +156,8 @@ let treeObj = {
             return Promise.reject(new Error('Go to the start page...')).catch(e => console.log(e.message));
         }
         treeObj.setStartTime();
-        treeObj.refresh();
         pageObj.addInfoBlock();
+        await treeObj.refresh();
         treeObj.timerReloadPageStart();
         await treeObj.initCourses();
     },
@@ -214,7 +214,7 @@ let treeObj = {
             localStorage.removeItem('currProgress');
         }
     },
-    refresh: function (){
+    refresh: async function (){
         if(Boolean(localStorage.grabberTreeObj)){
             treeObj.courses = JSON.parse(localStorage.grabberTreeObj).courses;
         }
