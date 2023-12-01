@@ -190,9 +190,9 @@ let treeObj = {
     showExecutionTime: function (){
         let diff = Date.now() - localStorage.startTime;
         localStorage.removeItem('startTime');
-        let h = Math.floor((diff/=1000)/60/60);
+        let h = Math.floor((diff/=1000)/3600);
         let m = Math.floor((diff-=h*3600)/60);
-        let s = Math.floor((diff- m*60)/60);
+        let s = Math.floor(diff-m*60);
         console.log(`Час виконання скрипту: ${h} год. ${m} хв. ${s} сек.`);
     },
     timerReloadPageStart: function(){
