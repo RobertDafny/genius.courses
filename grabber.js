@@ -185,7 +185,7 @@ let treeObj = {
         treeObj.timerReloadPageStop();
         localStorage.timerReloadPageId = setTimeout(function tick() {
             if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
-                localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? localStorage.reloadCounter + 1 : 1;
+                localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? Number(localStorage.reloadCounter) + 1 : 1;
                 location.reload();
             } else{
                 localStorage.currProgress = treeObj.getStrProgress();
