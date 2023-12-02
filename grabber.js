@@ -71,9 +71,6 @@ let courseObj = {
     init: async function(){
         return new Promise(function(resolve){
             setTimeout(async function(){
-                courseObj.clean();
-                let courseElem = $('.breadcrumbs li:nth-child(3) a');
-                courseObj.title = courseElem[0].innerText;
                 courseObj.url = window.location.href;
                 await courseObj.refresh();
                 await courseObj.initLessons();
@@ -98,13 +95,14 @@ let courseObj = {
         } else {
             courseObj.getCourseNavButton().click();
             await new Promise(resolve => setTimeout(resolve,3000));
+            let titleCss = '.courses-item__nameWrap';
             let descCss = '.courses-item__desc';
             let imgCss = '.image-seo-wrapper img';
             let courseIndex = treeObj.courses.length;
             await treeObj.openCourseList();
+            courseObj.title = $(titleCss)[courseIndex].innerText;
             courseObj.description = $(descCss)[courseIndex].innerText;
             courseObj.imgSrc = $(imgCss)[courseIndex].getAttribute('src');
-            courseObj.destroy();
             await treeObj.next();
         }
     },
@@ -117,6 +115,7 @@ let courseObj = {
         localStorage.grabberCourseObj = JSON.stringify(courseObj);
     },
     destroy: function(){
+        courseObj.clean();
         localStorage.removeItem('grabberCourseObj');
     },
     clean: function(){
@@ -172,7 +171,6 @@ let treeObj = {
         if(treeObj.courses.length < courseList.length){
             console.log(`Знайдено курсів: ${courseList.length}\nЗавантажується курс: ${treeObj.courses.length + 1}`)
             courseList[treeObj.courses.length].click();
-            await new Promise(resolve => setTimeout(resolve,3000));
             await courseObj.init()
         } else {
             treeObj.unload();
@@ -256,6 +254,7 @@ let treeObj = {
             return lessObj;
         })
         treeObj.courses.push(Object.assign({}, courseObj));
+        courseObj.destroy();
         treeObj.save();
         await treeObj.initCourses();
     },
