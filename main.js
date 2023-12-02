@@ -19,7 +19,7 @@ controllerObj.registerGrabberJs().then(async () => {
         await new Promise(resolve => setTimeout(resolve,2000));
         // Set to true if you need to get new courses
         pageObj.isActiveGrabber = false;
-        pageObj.isRefrashCourses = false;
+        pageObj.isRefreshCourses = false;
         await pageObj.init().catch(console.log);
         await pageObj.grabberRun().catch(console.log);
         pageObj.registerListeners();
