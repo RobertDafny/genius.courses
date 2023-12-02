@@ -287,6 +287,7 @@ pageObj = {
     searchStr: '',
     // Set to true if you need to get new courses
     isActiveGrabber: true,
+    isRefreshCourses: true,
     init: async ()=>{
         if(pageObj.isActiveGrabber
         && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
@@ -299,7 +300,7 @@ pageObj = {
             window.location.href = window.location.origin + pageObj.startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
-        if(typeof localStorage.coursesObj === 'undefined'){
+        if(pageObj.isRefreshCourses || typeof localStorage.coursesObj === 'undefined'){
             let json = await pageObj.getCoursesJson();
             localStorage.coursesObj = JSON.stringify(json);
         }
