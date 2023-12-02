@@ -286,8 +286,8 @@ pageObj = {
     startPage: '/uk/login', //'/uk/free',
     searchStr: '',
     // Set to true if you need to get new courses
-    isActiveGrabber: true,
-    isRefreshCourses: true,
+    isActiveGrabber: false,
+    isRefreshCourses: false,
     init: async ()=>{
         if(pageObj.isActiveGrabber
         && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
