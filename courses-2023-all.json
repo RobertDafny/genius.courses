@@ -545,13 +545,6 @@
               ]
             },
             {
-              "title": "Практичне домашнє завадння 1",
-              "description": "Для отримання балів за практичне домашнє завдання надсилайте посилання нижче у форму",
-              "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul6/home-work/praktichne1/questions",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
               "title": "Модуль №7. Блокова модель",
               "description": "На цьому занятті ми розберемо, що таке блокова модель і як браузер відмальовує (рендерить) елементи на сторінці. Основні теми:\n\n1. Блокова модель\n\n2. Геометрія елемента\n\n3. Типи елементів\n\n4. Структурні псевдокласи",
               "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul7/lesson/modul7",
@@ -607,13 +600,6 @@
               "materials": []
             },
             {
-              "title": "Практичне завдання 2",
-              "description": "Для отримання балів за практичне домашнє завдання надсилайте посилання нижче у форму",
-              "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul11/home-work/praktichne2/questions",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
               "title": "Модуль №12. Позиціонування",
               "description": "На цьому занятті ми навчимося позиціонувати елементи. Зрозуміємо, як працює позиціонування, і як керувати накладанням елементів.\n\nОсновні теми:\n\n1. Види позиціонування\n\n2. Накладання елементів\n\n3. Керування вмістом контенту\n\n \n\n ",
               "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul12/lesson/modul12",
@@ -662,13 +648,6 @@
               ]
             },
             {
-              "title": "Практичне домашнє завдання 3",
-              "description": "Для отримання балів за практичне домашнє завдання надсилайте посилання нижче у форму",
-              "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul15/home-work/praktichne22/questions",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
               "title": "Модуль №16. СSS Препроцессори",
               "description": "Препроцесори\nПрепроцессор SCSS\nВкладені правила\nДирективи\nВендорні префікси\n\nВ результаті: опануєте навички роботи із препроцесором. На занятті розібʼємо файл стилів на окремі файли для візуальної структури і зручної навігації по проєкту.\n\n\n\n\n\n\n",
               "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul16/lesson/modul16",
@@ -709,13 +688,6 @@
               "description": "Практика. Закріплення матеріалу",
               "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul19/lesson/modul19",
               "videoSrc": "https://player.vimeo.com/video/815286546",
-              "materials": []
-            },
-            {
-              "title": "Практичне завдання 4",
-              "description": "Для отримання балів за практичне домашнє завдання надсилайте посилання нижче у форму",
-              "url": "https://edu.genius.space/uk/courses/fullstack-developer-year/module/modul19/home-work/praktichne-zavdannya-4/questions",
-              "videoSrc": null,
               "materials": []
             },
             {
@@ -1754,6 +1726,10 @@
                 {
                   "title": "Шаблон",
                   "fileSrc": "https://file.genius.space/uploads/files/course/content/52/24/modul-9.docx"
+                },
+                {
+                  "title": "Презентація",
+                  "fileSrc": "https://file.genius.space/uploads/files/course/content/63/77/4-tekhniki-test-dizaynupptx.pdf"
                 }
               ]
             },
@@ -1761,7 +1737,7 @@
               "title": "Модуль №10. Тестові артефакти ч. 2: баг",
               "description": "На цьому уроці ми продовжуємо вивчати тестові артефакти, а саме Error, defect, failure, баг-репорт - атрибути, серйозність бага, пріоритет бага, життєвий цикл баг репорта, локалізація дефекта: root cause, effect. Та вивчаємо приклади з практики.\n\nВи отримаєте:\n\nError, defect, failure\nБаг-репорт - атрибути\nСерйозність бага\nПріоритет бага\nЖиттєвий цикл баг репорта\nЛокалізація дефекта: root cause, effect\nПриклади з практики\n+ДЗ",
               "url": "https://edu.genius.space/uk/courses/professiya-testirovshchik-v-it/module/modul1/lesson/modul-10",
-              "videoSrc": "https://player.vimeo.com/video/812422100",
+              "videoSrc": "https://player.vimeo.com/video/776554956",
               "materials": [
                 {
                   "title": "Презентація",
@@ -2226,13 +2202,6 @@
               ]
             },
             {
-              "title": "Домашнє завдання 1",
-              "description": "Вітаємо! \n\nТут прикріплені шаблони таблиць для виконання домашнього завдання до Модуля №1. \n\nВАЖЛИВО!\nТаблиці є недоступні до редагування, щоб почати працювати в ній - вам потібно зробити копію!  \n\n \n\nТаблиця до завдання №1 - Аналіз ринку та конкурентів \nТаблиця до завдання №2 - ДЕКОМПОЗИЦІЯ\n\nБажаємо успіхів! ",
-              "url": "https://edu.genius.space/uk/courses/mini-didjital-agenciya/module/modul-1/home-work/domashn-zavdannya-1/questions",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
               "title": "Відео-інструкція до виконня домашнього завдання до Модулю №1",
               "description": "Детальна інструкція та пояснення для заповнення таблиць з домашнього завдання Модуля №1 (Аналіз ринку та конкурентів, Декомпозиція) ",
               "url": "https://edu.genius.space/uk/courses/mini-didjital-agenciya/module/modul-1/lesson/video-instrukciya-do-vikonnya-domashnogo-zavdannya-do-modulu-1",
@@ -2377,7 +2346,7 @@
               "title": "Урок 1. Теоретичні основи використання ChatGPT",
               "description": "Поговоримо про: \n\nщо таке ChatGPT\nякі існують обмеження та можливості у використанні\nв яких сферах можна використовувати \nякі перспективи має\nяк правильно давати запит\nформула \"успішної підказки\"",
               "url": "https://edu.genius.space/uk/courses/mini-didjital-agenciya/module/modul-7/lesson/urok-1-teoretichni-osnovi-vikoristannya-chatgpt",
-              "videoSrc": "https://player.vimeo.com/video/825636693",
+              "videoSrc": "https://player.vimeo.com/video/881746182",
               "materials": [
                 {
                   "title": "Презентація",
@@ -3881,9 +3850,21 @@
               ]
             },
             {
-              "title": "Заняття 3.1 Tone of Voice",
+              "title": "Заняття 3.1 Позиціювання",
+              "description": "У цьому уроці ти дізнаєшся:\n\nЯк правильно створити позиціювання для особистого бренду\nЯк правильно створити позиціювання для бренду\nНа чому базується теорія",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-31-poziciuvannya",
+              "videoSrc": "https://player.vimeo.com/video/768328053",
+              "materials": [
+                {
+                  "title": "Презентація",
+                  "fileSrc": "https://drive.google.com/file/d/1OoEUiFCQ6XfyrorM1jlWO5T-Fot3x9g5/view?usp=sharing"
+                }
+              ]
+            },
+            {
+              "title": "Заняття 3.2 Tone of Voice",
               "description": "У цьому уроці ти дізнаєшся:\n\nЧому Tone of Voice - це Біблія бренду\nЯк найкраще описати тон голосу\nПро емоційні тригери",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-1",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-32-tone-of-voice",
               "videoSrc": "https://player.vimeo.com/video/768334364",
               "materials": [
                 {
@@ -3893,9 +3874,9 @@
               ]
             },
             {
-              "title": "Заняття 3.2 Контент в соціальних мережах",
+              "title": "Заняття 3.3 Контент в соціальних мережах",
               "description": "У цьому уроці ти дізнаєшся:\n\nЩо таке контент в соц. мережах\nЯк працює контент\nМісце контенту в стратегіях і концепціях",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-2",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-33-kontent-v-socialnih-merejah",
               "videoSrc": "https://player.vimeo.com/video/793329925",
               "materials": [
                 {
@@ -3905,9 +3886,9 @@
               ]
             },
             {
-              "title": "Заняття 3.3 Контент-план та рубрикатор",
+              "title": "Заняття 3.4 Контент-план та рубрикатор",
               "description": "У цьому уроці ти дізнаєшся про:\n\nТеми комунікації\nФорми комунікації\nЯк утворюються рубрики\nМатрицю контенту\n\n ",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-3",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-34-kontent-plan-ta-rubrikator",
               "videoSrc": "https://player.vimeo.com/video/804219026",
               "materials": [
                 {
@@ -3917,9 +3898,9 @@
               ]
             },
             {
-              "title": "Заняття 3.4 Сторітелінг",
+              "title": "Заняття 3.5 Сторітелінг",
               "description": "Говоримо про:\n\nЩо таке Сторітелінг\nСкладові комерційної історії\nІнструменти сторітелінгу",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-4",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-35-storiteling",
               "videoSrc": "https://player.vimeo.com/video/827740669",
               "materials": [
                 {
@@ -3929,9 +3910,9 @@
               ]
             },
             {
-              "title": "Заняття 3.5 Копірайтинг в соціальних мережах",
+              "title": "Заняття 3.6 Копірайтинг в соціальних мережах",
               "description": "У цьому уроці ти дізнаєшся про:\n\nЩо таке копірайтинг\nДля чого бізнесу копірайтинг\n5 вимірів особистого бренду\n4 виміри тону комунікації\nПрактичні поради ",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-5",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-36-kopiraiting-v-socialnih-merejah",
               "videoSrc": "https://player.vimeo.com/video/850062933",
               "materials": [
                 {
@@ -3941,9 +3922,9 @@
               ]
             },
             {
-              "title": "Заняття 3.6 Чат GPT для маркетингу",
+              "title": "Заняття 3.7 Чат GPT для маркетингу",
               "description": "На цьому уроці ти дізнаєшся:\n\nЩо таке ШІ та як його використовувати в SMM;\nПринцип роботи алгоритму;\nЯк ставити правильні запити.",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-6",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-37-chat-gpt-dlya-marketingu",
               "videoSrc": "https://player.vimeo.com/video/819415645",
               "materials": [
                 {
@@ -3953,9 +3934,9 @@
               ]
             },
             {
-              "title": "Заняття 3.7 Notion для SMM-фахівця",
+              "title": "Заняття 3.8 Notion для SMM-фахівця",
               "description": "На цьому уроці ти дізнаєшся:\n\nОсобливості програми Notion\nНайкращі способи її використання в SMM",
-              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/lesson3-7",
+              "url": "https://edu.genius.space/uk/courses/smm-annual/module/module-3/lesson/zanyattya-38-notion-dlya-smm-fahivcya",
               "videoSrc": "https://player.vimeo.com/video/819435090",
               "materials": [
                 {
@@ -5219,7 +5200,7 @@
               "title": "Заняття 1. Контекстна реклама і PPC",
               "description": "Говоримо про:\n\nЩо таке контекст?\nЯкі системи контексту існують?\nЩо належить до обов’язків спеціаліста з контексту?\nСловник PPC\nСемантика і як вона працює\nТипи рекламних кампаній",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/context/lesson/zanyattya-1-kontekstna-reklama-i-ppc",
-              "videoSrc": "https://player.vimeo.com/video/883775911",
+              "videoSrc": "https://player.vimeo.com/video/888317226",
               "materials": [
                 {
                   "title": "Презентація",
@@ -5308,7 +5289,7 @@
             },
             {
               "title": "Заняття 9. Реклама YouTube та все, що треба знати про неї",
-              "description": "Говоримо про:\n\nЯкі цілі має YouTube Ads\nТипи оголошень YouTube\nКанали для виключення\nПокрокова інструкція створення реклами YouTube",
+              "description": "Говоримо про:\n\nЯкі цілі має YouTube Ads\nТипи оголошень YouTube\nКанали для виключення\nПокрокова інструкція створення реклами YouTube\n\nУ цьому занятті 2 відео!",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/context/lesson/zanyattya-9-reklama-youtube-ta-vse-shcho-treba-znati-pro-nee",
               "videoSrc": "https://player.vimeo.com/video/883809140",
               "materials": [
@@ -5697,6 +5678,10 @@
                 {
                   "title": "Презентація до уроку",
                   "fileSrc": "https://file.genius.space/uploads/files/course/content/e7/df/zanyattya-22.pdf"
+                },
+                {
+                  "title": "Покроковий гайд налаштування вигрузки через ApixDrive",
+                  "fileSrc": "https://file.genius.space/uploads/files/course/content/83/98/uploading-leads-through-apixdrive-7811ffc60b4b4d26879d9e8f39324b2a.pdf"
                 }
               ]
             },
@@ -5752,6 +5737,10 @@
                 {
                   "title": "Презентація до уроку",
                   "fileSrc": "https://file.genius.space/uploads/files/course/content/52/48/zanyattya-27.pdf"
+                },
+                {
+                  "title": "Приклад щомісячного звіту",
+                  "fileSrc": "https://file.genius.space/uploads/files/course/content/c3/2b/shchomisyachnii-zvit-compressed.pdf"
                 }
               ]
             },
@@ -6018,6 +6007,18 @@
               "url": "https://edu.genius.space/uk/courses/genius-talents/module/modul-3/lesson/zustrich-08112023",
               "videoSrc": "https://player.vimeo.com/video/882618871",
               "materials": []
+            },
+            {
+              "title": "Зустріч 22.11.23",
+              "description": "",
+              "url": "https://edu.genius.space/uk/courses/genius-talents/module/modul-3/lesson/zustrich-221123",
+              "videoSrc": "https://player.vimeo.com/video/887427505",
+              "materials": [
+                {
+                  "title": "Презентація",
+                  "fileSrc": "https://drive.google.com/file/d/1_cbkhKJAGtLcDA12K_-swUjEM7X0MnKk/view?usp=sharing"
+                }
+              ]
             }
           ]
         },
@@ -6332,6 +6333,10 @@
                 {
                   "title": "Презентація 1",
                   "fileSrc": "https://docs.google.com/presentation/d/1AaacJS-_VDZCAZG3JU0p4z3hZ1ti_bZP/edit#slide=id.p1"
+                },
+                {
+                  "title": "Домашня робота 1",
+                  "fileSrc": "https://docs.google.com/document/d/1GuFE-XmsGg5oOmQECt2PulRYtWCFSV6A6VuNWnK5ki4/edit"
                 }
               ]
             },
