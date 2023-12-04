@@ -2680,38 +2680,31 @@
               "materials": []
             },
             {
-              "title": "Створення Highpoly моделі (фінальна частина)",
-              "description": "Закінчуємо створювати Highpoly модель. Робимо клавіши.",
+              "title": "Створення Highpoly моделі (частина 3)",
+              "description": "Продовжуємо створювати Highpoly модель. Робимо клавіши.",
               "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/stvorennya-highpoly-modeli-finalna-chastina",
               "videoSrc": "https://player.vimeo.com/video/880038340",
               "materials": []
             },
             {
-              "title": "Низькополігональна модель (частина 1)",
-              "description": "Початок роботи зі створенням низькополігональної моделі. ",
+              "title": "Фінальна частина створення Highpoly моделі",
+              "description": "Дороблюємо Highpoly моделі. Дороблюємо деталізацію малих об'єктів. ",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/finalna-chastina-stvorennya-highpoly-modeli",
+              "videoSrc": "https://player.vimeo.com/video/890898428",
+              "materials": []
+            },
+            {
+              "title": "Низькополігональна модель",
+              "description": "Створення низькополігональної моделі. \nПеревіряємо об'єкт на помилки.\nОптимізуємо сітку.\n\n ",
               "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-chastina-persha",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
-              "title": "Низькополігональна модель (частина 2)",
-              "description": "Продовжуємо роботу над створенням низькополігональної моделі",
-              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-chastina-druga",
-              "videoSrc": null,
-              "materials": []
-            },
-            {
-              "title": "Низькополігональна модель (фінальна частина)",
-              "description": "Фінальна пряма у створенні низькополігональної моделі. Вносимо останні правки та корективи.",
-              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-lowpoly-modeli/lesson/nizkopoligonalna-model-finalna-chastina",
-              "videoSrc": null,
+              "videoSrc": "https://player.vimeo.com/video/890910171",
               "materials": []
             },
             {
               "title": "Розгортка текстур (UV)",
-              "description": "Створення розгортки текстур ",
+              "description": "Створення розгортки текстур.\n\n ",
               "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-rozgortki-tekstur/lesson/rozgortka-tekstur",
-              "videoSrc": null,
+              "videoSrc": "https://player.vimeo.com/video/890936979",
               "materials": []
             }
           ]
