@@ -277,7 +277,7 @@ let treeObj = {
         return JSON.stringify(treeObj);
     }
 }
-let reloadObj = {
+reloadObj = {
     key: null,
     counter: null,
     max: 3,
