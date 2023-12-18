@@ -282,9 +282,9 @@ reloadObj = {
     counter: null,
     max: 3,
     init: function (){
-        let obj = !! localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : null;
+        let obj = !! localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
         reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
-        reloadObj.counter = Boolean(obj['key']) && (obj.key === reloadObj.key) ? obj.counter : 0;
+        reloadObj.counter = Boolean(obj.key) && (obj.key === reloadObj.key) ? obj.counter : 0;
     },
     increment: function (){
         reloadObj.init();
