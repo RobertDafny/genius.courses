@@ -24,7 +24,7 @@ let lessonObj = {
         let titleCss = '.breadcrumbs li:nth-child(3) a, div.tests-header__title';
         let videoCss = '.plyr__video-embed__container iframe, .plyr__video-wrapper  iframe';
         let descCss = 'div.education-desc, div.tests-questions__name, div.tests-content';
-        await new Promise(resolve => {
+        await new Promise((resolve, reject) => {
             setTimeout(async function tick(){
                 if($(descCss).length){
                     if($(videoCss).length === 0){
@@ -32,17 +32,25 @@ let lessonObj = {
                     }
                     return resolve();
                 }
+                if(reloadObj.isFull()){
+                    return reject();
+                }
                 await new Promise(() => setTimeout(tick,500));
             }, 500);
+        }).then(function (){
+            let video = $(videoCss);
+            lessonObj.title = $(titleCss)[0].innerText;
+            lessonObj.description = $(descCss)[0].innerText;
+            if(video.length !== 0){
+                lessonObj.videoSrc = $(videoCss)[0].getAttribute('src').replace(/\?.*/,'');
+            }
+        }).finally(function (){
+            lessonObj.url = window.location.href;
+            lessonObj.initMaterials();
+        }).catch(function (){
+            console.log(`Bad lecture: ${treeObj.getStrProgress()}`)
+            lessonObj.title = lessonObj.description = lessonObj.videoSrc = null;
         });
-        let video = $(videoCss);
-        lessonObj.url = window.location.href;
-        lessonObj.title = $(titleCss)[0].innerText;
-        lessonObj.description = $(descCss)[0].innerText;
-        if(video.length !== 0){
-            lessonObj.videoSrc =$(videoCss)[0].getAttribute('src').replace(/\?.*/,'');
-        }
-        lessonObj.initMaterials();
         await courseObj.next();
     },
     initMaterials: function(){
@@ -198,6 +206,7 @@ let treeObj = {
         localStorage.timerReloadPageId = setTimeout(function tick() {
             if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
                 localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? Number(localStorage.reloadCounter) + 1 : 1;
+                reloadObj.increment();
                 location.reload();
             } else{
                 localStorage.currProgress = treeObj.getStrProgress();
@@ -266,6 +275,31 @@ let treeObj = {
     },
     getJsonData: function(){
         return JSON.stringify(treeObj);
+    }
+}
+let reloadObj = {
+    key: null,
+    counter: null,
+    max: 3,
+    init: function (){
+        let obj = !! localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : null;
+        reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
+        reloadObj.counter = !!obj.key && obj.key === reloadObj.key ? obj.counter : 0;
+    },
+    increment: function (){
+        reloadObj.init();
+        reloadObj.counter ++;
+        reloadObj.save();
+    },
+    isFull: function(){
+        reloadObj.init();
+        return reloadObj.counter >= reloadObj.max;
+    },
+    save: function (){
+        localStorage.reloadObj = JSON.stringify(reloadObj);
+    },
+    destroy: function (){
+        localStorage.removeItem('reloadObj');
     }
 }
 let fileObj = {
