@@ -1,30 +1,30 @@
-let reloadObj = {
+let reloadPageObj = {
     key: null,
     counter: null,
     max: 3,
     init: function (){
-        let obj = !!localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
-        reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
-        reloadObj.counter = !!obj.key && (obj.key === reloadObj.key) ? obj.counter : 0;
+        let obj = !!localStorage.reloadPageObj ? JSON.parse(localStorage.reloadPageObj) : {};
+        reloadPageObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
+        reloadPageObj.counter = !!obj.key && (obj.key === reloadPageObj.key) ? obj.counter : 0;
     },
     increment: function (){
-        reloadObj.init();
-        reloadObj.counter ++;
-        reloadObj.save();
-    },
-    isFull: function(){
-        reloadObj.init();
-        return reloadObj.counter >= reloadObj.max;
+        reloadPageObj.init();
+        reloadPageObj.counter ++;
+        reloadPageObj.save();
     },
     save: function (){
-        localStorage.reloadObj = JSON.stringify(reloadObj);
+        localStorage.reloadPageObj = JSON.stringify(reloadPageObj);
+    },
+    isFull: function(){
+        reloadPageObj.init();
+        return reloadPageObj.counter >= reloadPageObj.max;
     },
     timerStart: function(){
-        reloadObj.timerStop();
+        reloadPageObj.timerStop();
         localStorage.timerId = setTimeout(function tick() {
             if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
                 localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? Number(localStorage.reloadCounter) + 1 : 1;
-                reloadObj.increment();
+                reloadPageObj.increment();
                 location.reload();
             } else{
                 localStorage.currProgress = treeObj.getStrProgress();
@@ -40,10 +40,12 @@ let reloadObj = {
         }
     },
     destroy: function (){
-        localStorage.removeItem('reloadObj');
+        reloadPageObj.timerStop();
+        console.log(`reloadCounter: ${localStorage.reloadCounter}`);
+        localStorage.removeItem('reloadCounter');
+        localStorage.removeItem('reloadPageObj');
     }
 }
-
 let materialObj = {
     title: null,
     fileSrc: null,
@@ -78,7 +80,7 @@ let lessonObj = {
                     }
                     return resolve();
                 }
-                if(reloadObj.isFull()){
+                if(reloadPageObj.isFull()){
                     return reject();
                 }
                 await new Promise(() => setTimeout(tick,500));
@@ -211,7 +213,7 @@ let treeObj = {
         treeObj.setStartTime();
         pageObj.addInfoBlock();
         await treeObj.refresh();
-        reloadObj.timerStart();
+        reloadPageObj.timerStart();
         await treeObj.initCourses();
     },
     isInit: function(){
@@ -257,11 +259,8 @@ let treeObj = {
     },
     destroy: function(){
         localStorage.removeItem('grabberTreeObj');
-        console.log(`reloadCounter: ${localStorage.reloadCounter}`);
-        localStorage.removeItem('reloadCounter');
-        reloadObj.timerStop();
         treeObj.showExecutionTime();
-        reloadObj.destroy();
+        reloadPageObj.destroy();
     },
     openCourseList: async function(){
         let btnBaseCss = 'div.btn__load-more button'
