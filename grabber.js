@@ -219,6 +219,7 @@ let treeObj = {
             clearTimeout(localStorage.timerReloadPageId);
             localStorage.removeItem('timerReloadPageId');
             localStorage.removeItem('currProgress');
+            reloadObj.destroy();
         }
     },
     refresh: async function (){
@@ -284,7 +285,7 @@ reloadObj = {
     init: function (){
         let obj = !! localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
         reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
-        reloadObj.counter = Boolean(obj.key) && (obj.key === reloadObj.key) ? obj.counter : 0;
+        reloadObj.counter = !!obj.key && (obj.key === reloadObj.key) ? obj.counter : 0;
     },
     increment: function (){
         reloadObj.init();
