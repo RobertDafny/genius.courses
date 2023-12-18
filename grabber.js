@@ -48,8 +48,8 @@ let lessonObj = {
             lessonObj.url = window.location.href;
             lessonObj.initMaterials();
         }).catch(function (){
-            console.log(`Bad lecture: ${treeObj.getStrProgress()}`)
             lessonObj.title = lessonObj.description = lessonObj.videoSrc = null;
+            console.log(`Bad lecture: ${treeObj.getStrProgress()}`)
         });
         await courseObj.next();
     },
@@ -283,7 +283,7 @@ reloadObj = {
     counter: null,
     max: 3,
     init: function (){
-        let obj = !! localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
+        let obj = !!localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
         reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
         reloadObj.counter = !!obj.key && (obj.key === reloadObj.key) ? obj.counter : 0;
     },
