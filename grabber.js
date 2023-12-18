@@ -1,3 +1,49 @@
+let reloadObj = {
+    key: null,
+    counter: null,
+    max: 3,
+    init: function (){
+        let obj = !!localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
+        reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
+        reloadObj.counter = !!obj.key && (obj.key === reloadObj.key) ? obj.counter : 0;
+    },
+    increment: function (){
+        reloadObj.init();
+        reloadObj.counter ++;
+        reloadObj.save();
+    },
+    isFull: function(){
+        reloadObj.init();
+        return reloadObj.counter >= reloadObj.max;
+    },
+    save: function (){
+        localStorage.reloadObj = JSON.stringify(reloadObj);
+    },
+    timerStart: function(){
+        reloadObj.timerStop();
+        localStorage.timerId = setTimeout(function tick() {
+            if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
+                localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? Number(localStorage.reloadCounter) + 1 : 1;
+                reloadObj.increment();
+                location.reload();
+            } else{
+                localStorage.currProgress = treeObj.getStrProgress();
+            }
+            localStorage.timerId = setTimeout(tick, 15000);
+        }, 15000);
+    },
+    timerStop: function(){
+        if(Boolean(localStorage.timerId)){
+            clearTimeout(localStorage.timerId);
+            localStorage.removeItem('timerId');
+            localStorage.removeItem('currProgress');
+        }
+    },
+    destroy: function (){
+        localStorage.removeItem('reloadObj');
+    }
+}
+
 let materialObj = {
     title: null,
     fileSrc: null,
@@ -165,7 +211,7 @@ let treeObj = {
         treeObj.setStartTime();
         pageObj.addInfoBlock();
         await treeObj.refresh();
-        treeObj.timerReloadPageStart();
+        reloadObj.timerStart();
         await treeObj.initCourses();
     },
     isInit: function(){
@@ -201,27 +247,6 @@ let treeObj = {
         let s = Math.floor(diff-m*60);
         console.log(`Час виконання скрипту: ${h} год. ${m} хв. ${s} сек.`);
     },
-    timerReloadPageStart: function(){
-        treeObj.timerReloadPageStop();
-        localStorage.timerReloadPageId = setTimeout(function tick() {
-            if(Boolean(localStorage.currProgress) && localStorage.currProgress === treeObj.getStrProgress()){
-                localStorage.reloadCounter = Boolean(localStorage.reloadCounter) ? Number(localStorage.reloadCounter) + 1 : 1;
-                reloadObj.increment();
-                location.reload();
-            } else{
-                localStorage.currProgress = treeObj.getStrProgress();
-            }
-            localStorage.timerReloadPageId = setTimeout(tick, 15000);
-        }, 15000);
-    },
-    timerReloadPageStop: function(){
-        if(Boolean(localStorage.timerReloadPageId)){
-            clearTimeout(localStorage.timerReloadPageId);
-            localStorage.removeItem('timerReloadPageId');
-            localStorage.removeItem('currProgress');
-            reloadObj.destroy();
-        }
-    },
     refresh: async function (){
         if(Boolean(localStorage.grabberTreeObj)){
             treeObj.courses = JSON.parse(localStorage.grabberTreeObj).courses;
@@ -234,8 +259,9 @@ let treeObj = {
         localStorage.removeItem('grabberTreeObj');
         console.log(`reloadCounter: ${localStorage.reloadCounter}`);
         localStorage.removeItem('reloadCounter');
-        treeObj.timerReloadPageStop();
+        reloadObj.timerStop();
         treeObj.showExecutionTime();
+        reloadObj.destroy();
     },
     openCourseList: async function(){
         let btnBaseCss = 'div.btn__load-more button'
@@ -276,31 +302,6 @@ let treeObj = {
     },
     getJsonData: function(){
         return JSON.stringify(treeObj);
-    }
-}
-reloadObj = {
-    key: null,
-    counter: null,
-    max: 3,
-    init: function (){
-        let obj = !!localStorage.reloadObj ? JSON.parse(localStorage.reloadObj) : {};
-        reloadObj.key = !!localStorage.currProgress ? localStorage.currProgress : window.location.href;
-        reloadObj.counter = !!obj.key && (obj.key === reloadObj.key) ? obj.counter : 0;
-    },
-    increment: function (){
-        reloadObj.init();
-        reloadObj.counter ++;
-        reloadObj.save();
-    },
-    isFull: function(){
-        reloadObj.init();
-        return reloadObj.counter >= reloadObj.max;
-    },
-    save: function (){
-        localStorage.reloadObj = JSON.stringify(reloadObj);
-    },
-    destroy: function (){
-        localStorage.removeItem('reloadObj');
     }
 }
 let fileObj = {
