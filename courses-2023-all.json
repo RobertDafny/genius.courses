@@ -2687,6 +2687,13 @@
               "materials": []
             },
             {
+              "title": "Створення Highpoly моделі (частина 4)",
+              "description": "Продовжуємо створювати Highpoly модель.",
+              "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/stvorenya-highpoly-modeli-chastina",
+              "videoSrc": "https://player.vimeo.com/video/894354072",
+              "materials": []
+            },
+            {
               "title": "Фінальна частина створення Highpoly моделі",
               "description": "Дороблюємо Highpoly моделі. Дороблюємо деталізацію малих об'єктів. ",
               "url": "https://edu.genius.space/uk/courses/3d-modeluvannya/module/stvorennya-highpoly-modeli/lesson/finalna-chastina-stvorennya-highpoly-modeli",
@@ -5125,7 +5132,7 @@
               "title": "Заняття 1. Що таке Web-аналітика?",
               "description": "Говоримо про:\n\nКому потрібна Web-аналітика?\nЧим займається аналітик?\nОсновні інструменти Web-аналітики.",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-1-shcho-take-web-analitika",
-              "videoSrc": "https://player.vimeo.com/video/789493266",
+              "videoSrc": "https://player.vimeo.com/video/891914468",
               "materials": [
                 {
                   "title": "Презентація",
@@ -5137,7 +5144,7 @@
               "title": "Заняття 2. Знайомство з Google Analytics 4",
               "description": "Говоримо про:\n\nНова ера в аналітиці\nПереваги і недоліки GA4\nОгляд інтерфейсу і можливостей\nПару слів про Google Big Query",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-2-znaiomstvo-z-google-analytics-4",
-              "videoSrc": "https://player.vimeo.com/video/835816537",
+              "videoSrc": "https://player.vimeo.com/video/891914716",
               "materials": [
                 {
                   "title": "Презентація",
@@ -5161,16 +5168,28 @@
               "title": "Заняття 4. Стань “розробником” разом з GTM",
               "description": "Говоримо про:\n\nЩо таке GTM?\nТеги / Тригери / Змінні\nОгляд можливостей GTM.\nНалаштування і перевірка.\nКорисні розширення для легкої роботи.",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-4-stan-rozrobnikom-razom-z-gtm",
-              "videoSrc": "https://player.vimeo.com/video/869487258",
+              "videoSrc": "https://player.vimeo.com/video/896720832",
               "materials": [
                 {
                   "title": "Презентація",
-                  "fileSrc": "https://drive.google.com/file/d/1vmy6UP84_rOpyvJaEe63nce4X2mIsmO0/view?usp=sharing"
+                  "fileSrc": "https://drive.google.com/file/d/1zPT3Y7CtvsTATBDnjrKG0AvWPXMzbLYZ/view?usp=sharing"
                 }
               ]
             },
             {
-              "title": "Заняття 5. Візуалізуємо в Google Data Studio",
+              "title": "Заняття 5. Що таке тестування і навіщо воно потрібне?",
+              "description": "Говоримо про:\n\nЯкі варіанти тестів існують?\nЯк аналізувати результати?\nЯк проводити тести на сайті без розробника?",
+              "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-5-shcho-take-testuvannya-i-navishcho-vono-potribne",
+              "videoSrc": "https://player.vimeo.com/video/896721122",
+              "materials": [
+                {
+                  "title": "Презентація",
+                  "fileSrc": "https://drive.google.com/file/d/1XEHaE90FyKBynls3InGF0d3JgmEbVkcm/view?usp=sharing"
+                }
+              ]
+            },
+            {
+              "title": "Заняття 6. Візуалізуємо в Google Data Studio",
               "description": "Говоримо про:\n\nПідключення до аналітики / таблиць\nВиди візуалізацій\nФільтри і форматування даних",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-6-vizualizuemo-v-google-data-studio",
               "videoSrc": "https://player.vimeo.com/video/789508935",
@@ -5182,7 +5201,7 @@
               ]
             },
             {
-              "title": "Заняття 6. Чи реально підглядати за відвідувачами сайту?",
+              "title": "Заняття 7. Чи реально підглядати за відвідувачами сайту?",
               "description": "Говоримо про:\n\nОгляд найпопулярніших сервісів\nТеплова карта кліків і скролу\nЗаписи сеансів",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/modul-10-web-analitika/lesson/zanyattya-7-chi-realno-pidglyadati-za-vidviduvachami-saitu",
               "videoSrc": "https://player.vimeo.com/video/789508895",
@@ -5209,7 +5228,7 @@
               "title": "Заняття 2. Пошукові кампанії та все, що з ними пов'язано",
               "description": "Говоримо про:\n\nЩо таке пошукові кампанії\nСтворення акаунту в Google Ads (Покрокова інструкція зі створення акаунту)\nОгляд інструментів Google Ads\nЗ чого складається пошукова реклама\nАукціони та як вони працюють\nРозширення і їх види\n\n ",
               "url": "https://edu.genius.space/uk/courses/kim-annual/module/context/lesson/zanyattya-2-poshukovi-kampanie-ta-vse-shcho-z-nimi-povyazano",
-              "videoSrc": "https://player.vimeo.com/video/883776221",
+              "videoSrc": "https://player.vimeo.com/video/891910585",
               "materials": [
                 {
                   "title": "Презентація",
@@ -5738,6 +5757,14 @@
                 {
                   "title": "Приклад щомісячного звіту",
                   "fileSrc": "https://file.genius.space/uploads/files/course/content/c3/2b/shchomisyachnii-zvit-compressed.pdf"
+                },
+                {
+                  "title": "Шаблон таблиці з щоденними та тижневими показниками",
+                  "fileSrc": "https://docs.google.com/spreadsheets/d/129ROag9WBGUW1nu21c_skAHofeAvd3IhVpS6W9OCguQ/edit#gid=0"
+                },
+                {
+                  "title": "Інструкція до таблиці з показниками",
+                  "fileSrc": "https://file.genius.space/uploads/files/course/content/be/9d/preza-target-compressed.pdf"
                 }
               ]
             },
@@ -6022,6 +6049,13 @@
               "description": "",
               "url": "https://edu.genius.space/uk/courses/genius-talents/module/modul-3/lesson/zustrich-0612",
               "videoSrc": "https://player.vimeo.com/video/892144584",
+              "materials": []
+            },
+            {
+              "title": "Зустріч 20.12 - Результативний пошук роботи на свята",
+              "description": "",
+              "url": "https://edu.genius.space/uk/courses/genius-talents/module/modul-3/lesson/zustrich-2012-rezultativnii-poshuk-roboti-na-svyata",
+              "videoSrc": "https://player.vimeo.com/video/896648142",
               "materials": []
             }
           ]
@@ -6921,7 +6955,7 @@
               ]
             },
             {
-              "title": "Модуль №2 Життєвий цикл розробки програмного забезпечення (SDLC)",
+              "title": "Модуль №2 (SDLC)",
               "description": "В результаті цього модулю ви дізнаєетесь:\n\nНа цьому занятті ви дізнаєтеся, як організований процес випуску програмного забезпечення, які зустрічі проводить команда, які методології краще підходять для яких проєктів.\n\nЩо таке SDLC\nГнучкі та жорсткі методології\nWaterfall\nScrum\nKanban",
               "url": "https://edu.genius.space/uk/courses/business-analyst-year/module/mod2/lesson/modul",
               "videoSrc": "https://player.vimeo.com/video/856193750",
@@ -6946,7 +6980,7 @@
             },
             {
               "title": "Модуль №4 Робота з вимогами",
-              "description": "В результаті цього модулю ви дізнаєетесь:\n\nНа цьому занятті ми розберемо, які бувають класифікації вимог за рівнями та видами, а також розглянемо на практиці, які формати вимог нпйчастіше пишуть на проєктах.\n\nЩо таке \"потреби\" і \"вимоги\"\nВиди та рівні вимог\nАтрибути якості вимог\nЯк писати вимоги\nBRD, FRD, SRS, User Stories, Use Cases",
+              "description": "В результаті цього модулю ви дізнаєтесь:\n\nНа цьому занятті ми розберемо, які бувають класифікації вимог за рівнями та видами, а також розглянемо на практиці, які формати вимог нпйчастіше пишуть на проєктах.\n\nЩо таке \"потреби\" і \"вимоги\"\nВиди та рівні вимог\nАтрибути якості вимог\nЯк писати вимоги\nBRD, FRD, SRS, User Stories, Use Cases",
               "url": "https://edu.genius.space/uk/courses/business-analyst-year/module/mod4/lesson/mod4",
               "videoSrc": "https://player.vimeo.com/video/856196202",
               "materials": [
