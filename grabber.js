@@ -325,13 +325,13 @@ pageObj = {
     isRefreshCourses: false,
     init: async ()=>{
         if(pageObj.isActiveGrabber
-        && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
-        && !window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
+            && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))
+            && !window.location.pathname.includes(pageObj.loginPage.replace(/\/uk/, ''))){
             let msg = 'Функціонал перегляду курсів можливий після зміни pageObj.isActiveGrabber або вихода з аккаунту!';
             return Promise.reject(new Error(msg));
         }
         if(pageObj.isActiveGrabber
-        && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
+            && !window.location.pathname.includes(pageObj.startPage.replace(/\/uk/, ''))){
             window.location.href = window.location.origin + pageObj.startPage;
             return Promise.reject(new Error('Go to the start page...'));
         }
@@ -378,7 +378,7 @@ pageObj = {
         await treeObj.run();
     },
     getCoursesJson: async function(){
-        let filePath = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/courses-2023-all.json';
+        let filePath = 'https://raw.githubusercontent.com/RobertDafny/genius.courses/main/courses-all.json';
         return await fetch(filePath)
             .then(response=>response.json())
             .catch(() => Promise.reject(new Error('Помилка при отриманні файлу курсів')));
