@@ -135,7 +135,7 @@ let courseObj = {
         })
     },
     initLessons: async function(){
-        let lessonListCss = 'a.courses-dashboard_lesson-wrap';
+        let lessonListCss = 'a.courses-dashboard_lesson-wrap:not(.locked)';
         await new Promise(resolve => {
             setTimeout(async function tick(){
                 if($(lessonListCss).length > 1){
