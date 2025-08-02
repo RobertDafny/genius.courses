@@ -70,7 +70,7 @@ let lessonObj = {
     init: async function(){
         lessonObj.clean();
         let titleCss = '.breadcrumbs li:nth-child(3) a, div.tests-header__title';
-        let videoCss = '.plyr__video-embed__container iframe, .plyr__video-wrapper  iframe';
+        let videoCss = '.plyr__video-embed__container iframe, .plyr__video-wrapper iframe, .video-player iframe';
         let descCss = 'div.education-desc, div.tests-questions__name, div.tests-content';
         await new Promise((resolve, reject) => {
             setTimeout(async function tick(){
